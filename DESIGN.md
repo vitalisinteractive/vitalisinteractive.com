@@ -15,6 +15,7 @@ An established institution crossed with an honest indie-development workbench: s
 - Use asymmetry and varied section structures.
 - Keep buttons square-edged or subtly rounded; no pill-heavy UI.
 - Every public claim must be supported by visible game, update, review, or community evidence.
+- Avoid volatile proof points such as live review counts unless they are automated or deliberately maintained.
 - Direct sales may be designed for, but no purchase CTA may appear until checkout, fulfillment, refund, privacy, and support systems are ready.
 
 ## Typography
