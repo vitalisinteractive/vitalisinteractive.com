@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-labelledby="title desc">
+<title id="title">Vitalis Interactive</title>
+<desc id="desc">Vitalis Interactive studio logo</desc>
+<rect width="360" height="360" rx="22" fill="#05090b"/>
+<path d="M86 54h48l47 148 47-148h47l-72 207h-46L86 54z" fill="#d8ad43"/>
+<path d="M117 54h27l37 117 37-117h26l-51 151h-25L117 54z" fill="#f2d77e" opacity=".35"/>
+<text x="180" y="294" fill="#d8ad43" text-anchor="middle" font-family="Georgia,serif" font-size="39" font-weight="700" letter-spacing="5">VITALIS</text>
+<text x="180" y="324" fill="#d8ad43" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="7">INTERACTIVE</text>
+</svg>
