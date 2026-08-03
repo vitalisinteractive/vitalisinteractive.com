@@ -3,10 +3,14 @@
   "short_name": "Vitalis",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#080f13",
-  "theme_color": "#080f13",
+  "background_color": "#071116",
+  "theme_color": "#071116",
   "icons": [
-    {"src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png"},
-    {"src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png"}
+    {
+      "src": "/assets/vitalis-logo-v3.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
   ]
 }
