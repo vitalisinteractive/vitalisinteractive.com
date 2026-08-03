@@ -18,6 +18,8 @@
     privacy.href = 'privacy.html';
     privacy.textContent = 'Privacy';
     privacy.className = 'footer-legal-link';
+    privacy.style.color = '#d7a936';
+    privacy.style.textDecoration = 'none';
     el.append(separator, privacy);
   });
 })();
