@@ -11,6 +11,24 @@
   }));
   document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
 
+  document.querySelectorAll('.footer-links').forEach(group => {
+    const links = Array.from(group.querySelectorAll('a[href^="mailto:"]'));
+    const labels = [
+      'Business, creators, press & partnerships',
+      'Player support & bug reports'
+    ];
+    links.forEach((link, index) => {
+      if (link.parentElement?.classList.contains('footer-contact')) return;
+      const item = document.createElement('div');
+      item.className = 'footer-contact';
+      const label = document.createElement('span');
+      label.className = 'footer-contact-label';
+      label.textContent = labels[index] || 'Contact';
+      link.before(item);
+      item.append(label, link);
+    });
+  });
+
   document.querySelectorAll('.copyright').forEach(el => {
     if (el.querySelector('a[href="privacy.html"]')) return;
     const separator = document.createTextNode(' · ');
