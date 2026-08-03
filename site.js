@@ -11,6 +11,20 @@
   }));
   document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
 
+  if (!document.querySelector('#footer-contact-styles')) {
+    const style = document.createElement('style');
+    style.id = 'footer-contact-styles';
+    style.textContent = `
+      .footer-links{gap:15px!important}
+      .footer-contact{display:grid;gap:2px}
+      .footer-contact-label{color:#71868b;font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+      .footer-contact a{color:#c2d0d2;text-decoration:none}
+      .footer-contact a:hover{color:#fff}
+      @media(max-width:980px){.footer-links{gap:14px!important}}
+    `;
+    document.head.append(style);
+  }
+
   document.querySelectorAll('.footer-links').forEach(group => {
     const links = Array.from(group.querySelectorAll('a[href^="mailto:"]'));
     const labels = [
