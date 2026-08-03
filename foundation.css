@@ -1,0 +1,43 @@
+/* Pass 1: search, accessibility, and resilient layout refinements */
+img[width][height]{height:auto}
+.framed-image img,.image-wide img,.catalog-image img{width:100%}
+.menu-button{min-width:44px;min-height:44px;cursor:pointer}
+.site-nav>a{display:inline-flex;align-items:center;min-height:44px}
+.site-nav>a[aria-current="page"]{color:#fff}
+.social-row a{display:inline-flex;align-items:center;min-height:44px}
+.faq summary{display:flex;align-items:center;min-height:44px}
+.faq summary:focus-visible,.social-row a:focus-visible,.footer-links a:focus-visible,.copyright a:focus-visible{
+  outline:3px solid #f0cf7b;
+  outline-offset:4px
+}
+.footer-links{gap:15px}
+.footer-contact{display:grid;gap:2px}
+.footer-contact-label{
+  color:#71868b;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.1em;
+  text-transform:uppercase
+}
+.footer-contact a{color:#c2d0d2;text-decoration:none;overflow-wrap:anywhere}
+.footer-contact a:hover{color:#fff}
+.footer-legal-link{color:#d7a936;text-decoration:none}
+.footer-legal-link:hover{text-decoration:underline}
+.error-page{min-height:calc(100vh - 220px);display:flex;align-items:center}
+.error-page .button-row{margin-top:34px}
+@media(max-width:980px){
+  .footer-links{gap:14px}
+}
+@media(max-width:760px){
+  .site-nav>a{min-height:48px}
+  .error-page{min-height:auto}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    scroll-behavior:auto!important;
+    transition-duration:.01ms!important;
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important
+  }
+}
