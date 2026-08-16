@@ -1,4 +1,15 @@
 (() => {
+  if (!window.__vitalisMetricoolTrackerLoaded) {
+    window.__vitalisMetricoolTrackerLoaded = true;
+    const metricoolScript = document.createElement('script');
+    metricoolScript.src = 'https://tracker.metricool.com/resources/be.js';
+    metricoolScript.async = true;
+    metricoolScript.addEventListener('load', () => {
+      window.beTracker.t({ hash: 'f0e9f7ba2d868aa7d04d28c28366f0ec' });
+    });
+    document.head.append(metricoolScript);
+  }
+
   const menu = document.querySelector('[data-menu]');
   const nav = document.querySelector('[data-nav]');
   menu?.addEventListener('click', () => {
