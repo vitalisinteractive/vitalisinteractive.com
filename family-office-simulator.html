@@ -79,9 +79,9 @@
   </header>
   <main id="main">
 
-    <section class="page-hero game-page-hero">
-      <div class="container split">
-        <div>
+    <section class="page-hero game-page-hero fos-hero">
+      <div class="container fos-hero-layout">
+        <div class="fos-hero-copy">
           <span class="eyebrow">Available now in Steam Early Access</span>
           <h1>Family Office Simulator</h1>
           <p class="page-lead">Build and run a family office across real estate, capital, staffing, governance, and succession.</p>
@@ -89,28 +89,45 @@
             <a class="button primary" href="https://store.steampowered.com/app/4820790/Family_Office_Simulator/" target="_blank" rel="noopener noreferrer">Play on Steam</a>
             <a class="button secondary light" href="https://steamcommunity.com/app/4820790/discussions/" target="_blank" rel="noopener noreferrer">Steam Community</a>
           </div>
+          <dl class="fos-proof-row" aria-label="Product information">
+            <div><dt>Early Access</dt><dd>Available now</dd></div>
+            <div><dt>Windows</dt><dd>PC</dd></div>
+            <div><dt>Steam Cloud</dt><dd>Supported</dd></div>
+          </dl>
         </div>
-        <div class="framed-image"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4820790/80d1b2503aa7728c9aabc4677c7b07457beaeb0c/header.jpg" width="460" height="215" fetchpriority="high" decoding="async" alt="Family Office Simulator key art"></div>
+        <div class="framed-image fos-key-art"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4820790/80d1b2503aa7728c9aabc4677c7b07457beaeb0c/header.jpg" width="460" height="215" fetchpriority="high" decoding="async" alt="Family Office Simulator key art"></div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section fos-game-section">
       <div class="container split intro-split">
         <div><span class="eyebrow dark">The game</span><h2>Build more than a balance sheet.</h2></div>
         <div><p>Acquire property, manage debt and liquidity, hire staff, establish trusts and policies, and prepare the next generation. The systems interact, and decisions made early can follow the office for decades.</p></div>
       </div>
-      <div class="container image-wide"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4820790/09ceb92d4cbcee87ec4dc9e4f730e2940b0c1c99/ss_09ceb92d4cbcee87ec4dc9e4f730e2940b0c1c99.1920x1080.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Family Office Simulator dashboard gameplay showing family office systems"></div>
+      <figure class="container fos-gameplay-figure">
+        <div class="fos-gameplay-frame"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4820790/09ceb92d4cbcee87ec4dc9e4f730e2940b0c1c99/ss_09ceb92d4cbcee87ec4dc9e4f730e2940b0c1c99.1920x1080.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Family Office Simulator dashboard gameplay showing family office systems"></div>
+        <figcaption>Review occupancy, income, expenses, and cash flow across the property portfolio.</figcaption>
+      </figure>
     </section>
 
-    <section class="section soft-section">
+    <section class="section soft-section fos-systems-section">
       <div class="container section-heading"><div><span class="eyebrow dark">Major systems</span><h2>One institution. Many moving parts.</h2></div></div>
-      <div class="container feature-grid">
-        <article><h3>Real estate</h3><p>Acquire, finance, operate, and sell income-producing property.</p></article>
-        <article><h3>Capital structure</h3><p>Balance leverage, liquidity, banking, brokerage, and risk.</p></article>
-        <article><h3>People</h3><p>Hire the team, manage compensation, and build operating capacity.</p></article>
-        <article><h3>Governance</h3><p>Use trusts, policies, succession, and philanthropy to shape the institution.</p></article>
-        <article><h3>Time</h3><p>Live with market cycles and the consequences of earlier choices.</p></article>
-        <article><h3>Legacy</h3><p>Prepare heirs and test whether the institution survives its founder.</p></article>
+      <div class="container fos-system-groups">
+        <section class="fos-system-group" aria-labelledby="build-the-portfolio">
+          <h3 id="build-the-portfolio">Build the portfolio</h3>
+          <article><h4>Real estate</h4><p>Acquire, finance, operate, and sell income-producing property.</p></article>
+          <article><h4>Capital structure</h4><p>Balance leverage, liquidity, banking, brokerage, and risk.</p></article>
+        </section>
+        <section class="fos-system-group" aria-labelledby="run-the-institution">
+          <h3 id="run-the-institution">Run the institution</h3>
+          <article><h4>People</h4><p>Hire the team, manage compensation, and build operating capacity.</p></article>
+          <article><h4>Governance</h4><p>Use trusts, policies, succession, and philanthropy to shape the institution.</p></article>
+        </section>
+        <section class="fos-system-group" aria-labelledby="plan-beyond-today">
+          <h3 id="plan-beyond-today">Plan beyond today</h3>
+          <article><h4>Time</h4><p>Live with market cycles and the consequences of earlier choices.</p></article>
+          <article><h4>Legacy</h4><p>Prepare heirs and test whether the institution survives its founder.</p></article>
+        </section>
       </div>
     </section>
 
