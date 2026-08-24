@@ -5,6 +5,7 @@ img[width][height]{height:auto}
 .site-nav>a{display:inline-flex;align-items:center;min-height:44px}
 .site-nav>a[aria-current="page"]{color:#fff}
 .social-row a{display:inline-flex;align-items:center;min-height:44px}
+.game-page-hero .page-lead{color:#c8d4d6}
 .faq summary{display:flex;align-items:center;min-height:44px}
 .faq summary:focus-visible,.social-row a:focus-visible,.footer-links a:focus-visible,.copyright a:focus-visible{
   outline:3px solid #f0cf7b;
@@ -14,13 +15,15 @@ img[width][height]{height:auto}
 .footer-contact{display:grid;gap:2px}
 .footer-contact-label{
   color:#71868b;
-  font-size:10px;
+  font-size:12px;
   font-weight:900;
   letter-spacing:.1em;
   text-transform:uppercase
 }
 .footer-contact a{color:#c2d0d2;text-decoration:none;overflow-wrap:anywhere}
 .footer-contact a:hover{color:#fff}
+.support-grid article,.contact-grid>a{min-width:0}
+.support-grid .button,.contact-grid strong{overflow-wrap:anywhere}
 .footer-legal-link{color:#d7a936;text-decoration:none}
 .footer-legal-link:hover{text-decoration:underline}
 .error-page{min-height:calc(100vh - 220px);display:flex;align-items:center}
@@ -30,6 +33,9 @@ img[width][height]{height:auto}
 }
 @media(max-width:760px){
   .site-nav>a{min-height:48px}
+  .support-grid .button{width:100%;padding-inline:12px}
+  .contact-grid>a{padding:28px}
+  .contact-grid strong{font-size:17px}
   .error-page{min-height:auto}
 }
 @media(prefers-reduced-motion:reduce){

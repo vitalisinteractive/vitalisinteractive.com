@@ -1,20 +1,10 @@
 .dispatch-section{
   position:relative;
   overflow:hidden;
-  padding:94px 0 82px;
+  padding:64px 0 58px;
   background:#0a171d;
   color:#fff;
   border-top:1px solid rgba(255,255,255,.1)
-}
-.dispatch-section::before{
-  content:"";
-  position:absolute;
-  width:520px;
-  height:520px;
-  left:-260px;
-  top:-300px;
-  border:1px solid rgba(215,169,54,.18);
-  border-radius:50%
 }
 .dispatch-grid{
   position:relative;
@@ -23,13 +13,13 @@
   gap:72px;
   align-items:start
 }
-.dispatch-copy{padding-top:42px}
+.dispatch-copy{padding-top:24px}
 .dispatch-copy h2{
   margin:12px 0 24px;
   max-width:520px;
-  font-size:clamp(48px,6vw,78px);
-  line-height:.98;
-  letter-spacing:-.05em
+  font-size:clamp(42px,5vw,62px);
+  line-height:1;
+  letter-spacing:-.04em
 }
 .dispatch-copy p{
   max-width:520px;
@@ -37,16 +27,8 @@
   color:#b6c5c8;
   font-size:19px
 }
-.dispatch-copy .dispatch-note{
-  margin-top:18px;
-  color:#d7a936;
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:.12em;
-  text-transform:uppercase
-}
 .dispatch-form{
-  padding:18px;
+  padding:12px;
   border:1px solid rgba(255,255,255,.13);
   background:rgba(255,255,255,.035);
   box-shadow:0 24px 70px rgba(0,0,0,.26)
@@ -72,7 +54,7 @@
 .privacy-content h2:first-child{margin-top:0}
 .privacy-content p,.privacy-content li{color:#53656a;font-size:17px}
 .privacy-content ul{padding-left:22px}
-.privacy-content a{color:#a87917;font-weight:800}
+.privacy-content a{color:#8b6413;font-weight:800}
 .privacy-meta{
   margin-top:22px;
   color:#9aadb2;
@@ -86,8 +68,8 @@
   .dispatch-copy p{max-width:680px}
 }
 @media(max-width:760px){
-  .dispatch-section{padding:70px 0 58px}
-  .dispatch-copy h2{font-size:clamp(44px,13vw,66px)}
+  .dispatch-section{padding:52px 0 44px}
+  .dispatch-copy h2{font-size:clamp(40px,12vw,58px)}
   .dispatch-form{padding:8px}
   .dispatch-form iframe{height:760px}
   .privacy-content h2{font-size:30px}
