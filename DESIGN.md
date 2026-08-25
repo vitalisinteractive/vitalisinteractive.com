@@ -6,6 +6,15 @@ Vitalis creates grounded simulation games inspired by how the real world actuall
 ## Visual direction
 An established institution crossed with an honest indie-development workbench: serious, editorial, game-first, and alive.
 
+## Official identity
+- The approved 2026 identity is the exact black-and-gold artwork supplied by the studio owner.
+- Do not redraw, reinterpret, simplify, restyle, or regenerate the V or the VITALIS INTERACTIVE lockup.
+- Use the V-only mark in the header, favicon, and small icon contexts.
+- Use the full horizontal lockup in the footer and selected studio-brand moments.
+- The Studio page may feature the exact V and horizontal lockup at larger scale.
+- Gold is an accent and material cue, not a page-filling theme. The games remain the primary visual evidence.
+- Keep archived identity files for history, but do not surface older marks on the public site.
+
 ## Rules
 - Use real gameplay and dated studio activity before decorative mockups.
 - Dark teal/ink, warm paper, and restrained gold are the core palette.
@@ -37,4 +46,4 @@ An established institution crossed with an honest indie-development workbench: s
 - Founder address is not the default public contact.
 
 ## Responsive
-Mobile layouts must preserve hierarchy, real imagery, and readable tap targets without decorative overflow.
+Mobile layouts must preserve hierarchy, real imagery, readable tap targets, and logo legibility without decorative overflow.
