@@ -1,4 +1,14 @@
-/* Pass 1: search, accessibility, and resilient layout refinements */
+/* Accessibility, resilience, and the 2026 Vitalis identity system. */
+:root{
+  --brand-gold:#d8a52f;
+  --brand-gold-bright:#f4d47d;
+  --brand-gold-pale:#fff0b4;
+  --brand-gold-deep:#8f6417;
+  --brand-ink:#061014;
+  --brand-ink-2:#0b181e;
+  --brand-line:rgba(216,165,47,.28);
+}
+
 img[width][height]{height:auto}
 .framed-image img,.image-wide img,.catalog-image img{width:100%}
 .menu-button{min-width:44px;min-height:44px;cursor:pointer}
@@ -8,7 +18,7 @@ img[width][height]{height:auto}
 .game-page-hero .page-lead{color:#c8d4d6}
 .faq summary{display:flex;align-items:center;min-height:44px}
 .faq summary:focus-visible,.social-row a:focus-visible,.footer-links a:focus-visible,.copyright a:focus-visible{
-  outline:3px solid #f0cf7b;
+  outline:3px solid var(--brand-gold-bright);
   outline-offset:4px
 }
 .footer-links{gap:15px}
@@ -24,20 +34,487 @@ img[width][height]{height:auto}
 .footer-contact a:hover{color:#fff}
 .support-grid article,.contact-grid>a{min-width:0}
 .support-grid .button,.contact-grid strong{overflow-wrap:anywhere}
-.footer-legal-link{color:#d7a936;text-decoration:none}
+.footer-legal-link{color:var(--brand-gold);text-decoration:none}
 .footer-legal-link:hover{text-decoration:underline}
 .error-page{min-height:calc(100vh - 220px);display:flex;align-items:center}
 .error-page .button-row{margin-top:34px}
+
+/* Global studio chrome. The site stays game-first; the identity appears in the frame. */
+body{
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(rgba(7,17,22,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(7,17,22,.018) 1px,transparent 1px);
+  background-size:48px 48px
+}
+.site-header{
+  border-bottom-color:var(--brand-line);
+  background:rgba(5,13,17,.965);
+  box-shadow:0 12px 34px rgba(0,0,0,.16)
+}
+.site-header::after{
+  content:"";
+  position:absolute;
+  inset:auto 0 -1px;
+  height:1px;
+  background:linear-gradient(90deg,transparent 4%,rgba(244,212,125,.52) 50%,transparent 96%);
+  pointer-events:none
+}
+.brand{
+  position:relative;
+  width:72px;
+  height:72px;
+  overflow:visible;
+  flex:0 0 72px
+}
+.brand img{
+  position:absolute;
+  width:1px;
+  height:1px;
+  opacity:0;
+  pointer-events:none
+}
+.brand::before{
+  content:"";
+  position:absolute;
+  inset:2px;
+  background:url("assets/vitalis-mark-exact-2026.webp") center/contain no-repeat;
+  filter:drop-shadow(0 8px 15px rgba(0,0,0,.42));
+  transition:transform .2s ease,filter .2s ease
+}
+.brand:hover::before{
+  transform:translateY(-1px);
+  filter:drop-shadow(0 10px 18px rgba(0,0,0,.52)) brightness(1.05)
+}
+.site-nav>a{
+  position:relative;
+  letter-spacing:.025em
+}
+.site-nav>a:not(.nav-cta)::after{
+  content:"";
+  position:absolute;
+  left:8px;
+  right:8px;
+  bottom:6px;
+  height:1px;
+  transform:scaleX(0);
+  transform-origin:center;
+  background:var(--brand-gold);
+  transition:transform .18s ease
+}
+.site-nav>a:not(.nav-cta):hover,
+.site-nav>a:not(.nav-cta).active,
+.site-nav>a:not(.nav-cta)[aria-current="page"]{color:var(--brand-gold-bright)}
+.site-nav>a:not(.nav-cta):hover::after,
+.site-nav>a:not(.nav-cta).active::after,
+.site-nav>a:not(.nav-cta)[aria-current="page"]::after{transform:scaleX(1)}
+.nav-cta,.button.primary{
+  background:linear-gradient(180deg,#e1b64a,#c89423);
+  border-color:rgba(255,238,178,.36);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 9px 24px rgba(0,0,0,.13)
+}
+.nav-cta:hover,.button.primary:hover{filter:brightness(1.06);box-shadow:inset 0 1px 0 rgba(255,255,255,.38),0 12px 30px rgba(0,0,0,.2)}
+.button.secondary{
+  border-color:rgba(244,212,125,.32)
+}
+.button.secondary:hover{border-color:rgba(244,212,125,.68)}
+.eyebrow{color:#e5ba4d}
+.eyebrow.dark,.text-link,.news-card>span,.update-list time,.contact-grid strong{color:var(--brand-gold-deep)}
+a:focus-visible,button:focus-visible{outline-color:var(--brand-gold-bright)}
+.text-link{position:relative}
+.text-link::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:44px;
+  height:1px;
+  background:var(--brand-gold);
+  transition:width .18s ease
+}
+.text-link:hover::after{width:100%}
+
+/* Homepage: protect the FOS sales funnel and make the studio signature unmistakable. */
+.home-hero{
+  border-bottom:1px solid var(--brand-line)
+}
+.home-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 16% 30%,rgba(216,165,47,.10),transparent 34%),
+    linear-gradient(180deg,rgba(255,255,255,.025),transparent 28%)
+}
+.home-hero::after{
+  content:"";
+  position:absolute;
+  z-index:1;
+  right:clamp(18px,4vw,70px);
+  bottom:clamp(20px,5vw,72px);
+  width:clamp(110px,14vw,220px);
+  aspect-ratio:1;
+  background:url("assets/vitalis-mark-exact-2026.webp") center/contain no-repeat;
+  opacity:.13;
+  filter:saturate(.75) brightness(.82);
+  pointer-events:none
+}
+.hero-copy{text-shadow:0 2px 18px rgba(0,0,0,.34)}
+.hero-proof{
+  padding:22px 22px 0;
+  border-top-color:rgba(244,212,125,.28);
+  background:linear-gradient(90deg,rgba(4,11,15,.34),transparent)
+}
+.signal-strip{
+  position:relative;
+  background:linear-gradient(90deg,#08151b,#10232b 50%,#08151b);
+  border-color:var(--brand-line)
+}
+.signal-strip::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,transparent,rgba(216,165,47,.045),transparent);
+  pointer-events:none
+}
+.signal-strip i{box-shadow:0 0 0 3px rgba(216,165,47,.08)}
+.home-game{position:relative;overflow:hidden}
+.home-game::after{
+  content:"V";
+  position:absolute;
+  right:-.04em;
+  bottom:-.22em;
+  color:rgba(7,17,22,.028);
+  font:700 clamp(360px,44vw,720px)/1 Georgia,"Times New Roman",serif;
+  pointer-events:none
+}
+.home-game>.container{position:relative;z-index:1}
+.dark-section{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 76% 40%,rgba(216,165,47,.09),transparent 28%),
+    linear-gradient(135deg,#0d1c22 0%,#061014 100%);
+  border-block:1px solid var(--brand-line)
+}
+.dark-section::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  right:-4%;
+  top:50%;
+  width:min(58vw,900px);
+  aspect-ratio:3/1;
+  transform:translateY(-50%);
+  background:url("assets/vitalis-lockup-exact-2026.webp") center/contain no-repeat;
+  opacity:.075;
+  filter:grayscale(.2) saturate(.8);
+  pointer-events:none
+}
+.dark-section .container{position:relative;z-index:1}
+
+/* Shared page heroes: editorial, restrained, and owned by the brand. */
+.page-hero{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  border-bottom-color:var(--brand-line);
+  background:
+    radial-gradient(circle at 82% 36%,rgba(216,165,47,.09),transparent 28%),
+    linear-gradient(135deg,#0d1c22,#061014)
+}
+.page-hero::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.014) 1px,transparent 1px);
+  background-size:62px 62px;
+  mask-image:linear-gradient(90deg,transparent 20%,#000 100%);
+  pointer-events:none
+}
+.page-hero::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  right:max(20px,calc((100vw - 1180px)/2));
+  top:50%;
+  width:min(30vw,360px);
+  aspect-ratio:1;
+  transform:translateY(-50%);
+  background:url("assets/vitalis-mark-exact-2026.webp") center/contain no-repeat;
+  opacity:.11;
+  pointer-events:none
+}
+.utility-page-hero{
+  color:var(--ink);
+  background:
+    linear-gradient(90deg,rgba(216,165,47,.10),transparent 42%),
+    var(--paper)
+}
+.utility-page-hero::before{
+  background:linear-gradient(90deg,rgba(7,17,22,.025) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:none
+}
+.utility-page-hero::after{opacity:.035;filter:grayscale(1)}
+
+/* Studio: the one page where the full approved logo gets room to breathe. */
+.studio-page-hero{
+  min-height:590px;
+  display:flex;
+  align-items:center;
+  color:#fff;
+  background:
+    radial-gradient(circle at 78% 42%,rgba(216,165,47,.16),transparent 31%),
+    linear-gradient(135deg,#08151a 0%,#030709 100%)
+}
+.studio-page-hero::before{
+  z-index:-2;
+  inset:auto -10% -18% auto;
+  width:min(74vw,1120px);
+  height:46%;
+  background:url("assets/vitalis-lockup-exact-2026.webp") center/contain no-repeat;
+  background-size:contain;
+  opacity:.09;
+  mask-image:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent);
+  pointer-events:none
+}
+.studio-page-hero::after{
+  right:max(18px,calc((100vw - 1180px)/2));
+  width:min(44vw,500px);
+  aspect-ratio:1;
+  background:url("assets/vitalis-mark-exact-2026.webp") center/contain no-repeat;
+  opacity:.98;
+  filter:drop-shadow(0 26px 56px rgba(0,0,0,.48))
+}
+.studio-page-hero .narrow{
+  position:relative;
+  z-index:1;
+  max-width:1180px;
+  padding-right:min(48%,555px)
+}
+.studio-page-hero h1{max-width:700px}
+.studio-page-hero .page-lead{max-width:640px;color:#c8d4d6}
+.process-list{counter-reset:vitalis-process}
+.process-list article{
+  position:relative;
+  counter-increment:vitalis-process;
+  padding-left:72px;
+  transition:background .18s ease,padding-left .18s ease
+}
+.process-list article::before{
+  content:counter(vitalis-process,decimal-leading-zero);
+  position:absolute;
+  left:0;
+  top:25px;
+  color:var(--brand-gold-deep);
+  font:700 12px/1 Arial,Helvetica,sans-serif;
+  letter-spacing:.16em
+}
+.process-list article:hover{
+  padding-left:82px;
+  background:linear-gradient(90deg,rgba(216,165,47,.065),transparent 72%)
+}
+
+/* Games: make the public portfolio feel deliberate, even while it remains focused. */
+.games-page-hero::after{opacity:.18;width:min(34vw,410px)}
+.game-catalog-card{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(216,165,47,.31);
+  box-shadow:0 32px 90px rgba(7,17,22,.24)
+}
+.game-catalog-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  box-shadow:inset 0 1px 0 rgba(244,212,125,.2)
+}
+.catalog-image{position:relative;overflow:hidden}
+.catalog-image::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,transparent 66%,rgba(7,17,22,.74));
+  pointer-events:none
+}
+.game-catalog-card>div:last-child{position:relative}
+.game-catalog-card>div:last-child::before{
+  content:"";
+  display:block;
+  width:64px;
+  height:2px;
+  margin-bottom:30px;
+  background:linear-gradient(90deg,var(--brand-gold),transparent)
+}
+
+/* Family Office Simulator: premium framing without competing with the game. */
+.fos-hero{
+  background:
+    radial-gradient(circle at 72% 44%,rgba(216,165,47,.10),transparent 29%),
+    linear-gradient(135deg,#0d1c22,#061014)
+}
+.fos-key-art{
+  border-color:rgba(216,165,47,.36);
+  box-shadow:0 30px 88px rgba(0,0,0,.48),0 0 0 1px rgba(244,212,125,.06)
+}
+.fos-proof-row>div{
+  padding:14px 15px;
+  border-left:2px solid rgba(216,165,47,.34);
+  background:rgba(255,255,255,.025)
+}
+.fos-system-group{
+  border-top-color:var(--brand-gold-deep);
+  background:linear-gradient(180deg,rgba(216,165,47,.045),transparent 90px);
+  padding-inline:18px
+}
+.fos-system-group>h3{color:var(--brand-gold-deep)}
+.fos-gameplay-frame{border-color:rgba(143,100,23,.30)}
+
+/* Updates, support, and contact: human utility with a consistent material language. */
+.news-card,.support-grid article,.contact-grid>a{
+  position:relative;
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease,background .18s ease
+}
+.news-card::before,.support-grid article::before,.contact-grid>a::before{
+  content:"";
+  position:absolute;
+  left:-1px;
+  top:-1px;
+  width:52px;
+  height:2px;
+  background:var(--brand-gold)
+}
+.news-card:hover,.support-grid article:hover,.contact-grid>a:hover{
+  transform:translateY(-3px);
+  border-color:rgba(143,100,23,.38);
+  box-shadow:0 18px 44px rgba(7,17,22,.10)
+}
+.news-card.featured::before{background:var(--brand-gold-bright)}
+.update-list article{
+  position:relative;
+  transition:background .18s ease,padding-inline .18s ease
+}
+.update-list article::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:28px;
+  bottom:28px;
+  width:2px;
+  background:linear-gradient(var(--brand-gold),transparent)
+}
+.update-list article:hover{
+  padding-inline:18px;
+  background:linear-gradient(90deg,rgba(216,165,47,.06),transparent 78%)
+}
+.faq details{position:relative;padding-right:38px}
+.faq summary::after{
+  content:"+";
+  position:absolute;
+  right:4px;
+  color:var(--brand-gold-deep);
+  font-size:22px;
+  font-weight:400
+}
+.faq details[open] summary::after{content:"−"}
+.contact-grid>a{background:rgba(255,255,255,.46)}
+.contact-grid>a:hover strong{color:#6f4b0b}
+
+/* Footer: exact approved horizontal lockup, functional information, no logo soup. */
+.site-footer{
+  position:relative;
+  overflow:hidden;
+  border-top-color:var(--brand-line);
+  background:
+    radial-gradient(circle at 14% 20%,rgba(216,165,47,.065),transparent 30%),
+    var(--brand-ink)
+}
+.site-footer::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:50%;
+  width:min(1180px,calc(100% - 44px));
+  height:1px;
+  transform:translateX(-50%);
+  background:linear-gradient(90deg,transparent,rgba(244,212,125,.58),transparent)
+}
+.site-footer::after{
+  content:"";
+  position:absolute;
+  right:-110px;
+  bottom:-160px;
+  width:430px;
+  aspect-ratio:1;
+  background:url("assets/vitalis-mark-exact-2026.webp") center/contain no-repeat;
+  opacity:.055;
+  pointer-events:none
+}
+.footer-grid{
+  position:relative;
+  z-index:1;
+  grid-template-columns:minmax(285px,360px) 1fr 1fr;
+  gap:38px
+}
+.footer-grid>img{display:none}
+.footer-grid::before{
+  content:"";
+  display:block;
+  width:min(350px,100%);
+  aspect-ratio:3/1;
+  background:url("assets/vitalis-lockup-exact-2026.webp") left center/contain no-repeat
+}
+.footer-grid>div:not(.footer-links) strong{display:none}
+.footer-grid>div:not(.footer-links) span{max-width:390px}
+.footer-links a:hover{color:var(--brand-gold-bright)}
+.copyright{position:relative;z-index:1;border-top-color:rgba(216,165,47,.16)}
+
 @media(max-width:980px){
   .footer-links{gap:14px}
+  .footer-grid{grid-template-columns:minmax(250px,320px) 1fr}
+  .footer-links{grid-column:1/-1}
+  .studio-page-hero::after{right:20px;width:min(42vw,420px);opacity:.9}
+  .studio-page-hero .narrow{padding-right:min(44%,470px)}
+  .dark-section::after{right:-14%;width:min(74vw,850px)}
 }
+
 @media(max-width:760px){
   .site-nav>a{min-height:48px}
   .support-grid .button{width:100%;padding-inline:12px}
   .contact-grid>a{padding:28px}
   .contact-grid strong{font-size:17px}
   .error-page{min-height:auto}
+  .brand{width:58px;height:58px;flex-basis:58px}
+  .brand::before{inset:2px}
+  .site-nav>a:not(.nav-cta)::after{display:none}
+  .home-hero::after{display:none}
+  .hero-proof{padding-inline:0;background:none}
+  .dark-section::after{right:-30%;width:115vw;opacity:.055}
+  .page-hero::after{right:-50px;width:240px;opacity:.07}
+  .studio-page-hero{
+    min-height:auto;
+    padding:92px 0 68px;
+    background:linear-gradient(180deg,#061014,#0d1c22)
+  }
+  .studio-page-hero::before{display:none}
+  .studio-page-hero::after{display:none}
+  .studio-page-hero .narrow{padding-right:0}
+  .process-list article{padding-left:48px}
+  .process-list article:hover{padding-left:48px}
+  .footer-grid{grid-template-columns:1fr;gap:20px}
+  .footer-grid::before{width:min(330px,94%)}
+  .footer-links{grid-column:auto}
+  .site-footer::after{right:-150px;bottom:-150px;width:340px}
 }
+
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{
@@ -46,52 +523,4 @@ img[width][height]{height:auto}
     animation-duration:.01ms!important;
     animation-iteration-count:1!important
   }
-}
-
-/* 2026 Vitalis identity refresh: keep the site game-first, elevate the studio chrome. */
-:root{--brand-gold:#d7a936;--brand-gold-bright:#f0cf7b;--brand-gold-deep:#8b6413}
-.site-header{border-bottom-color:rgba(215,169,54,.22);box-shadow:0 10px 30px rgba(0,0,0,.10)}
-.brand{width:82px;height:72px;overflow:visible;align-items:center}
-.brand img{width:64px;height:64px;filter:drop-shadow(0 5px 12px rgba(0,0,0,.28))}
-.site-nav>a:hover,.site-nav>a.active,.site-nav>a[aria-current="page"]{color:var(--brand-gold-bright)}
-.nav-cta,.button.primary{background:var(--brand-gold);border-color:rgba(240,207,123,.38)}
-.nav-cta:hover,.button.primary:hover{filter:brightness(1.06)}
-.eyebrow{color:#e3b94d}
-.eyebrow.dark,.text-link,.news-card>span,.update-list time,.contact-grid strong{color:var(--brand-gold-deep)}
-a:focus-visible,button:focus-visible{outline-color:var(--brand-gold-bright)}
-.signal-strip i{box-shadow:0 0 0 3px rgba(215,169,54,.08)}
-.dark-section{background:linear-gradient(135deg,#0e1d24 0%,#071116 100%)}
-
-/* The Studio page is the one place the full identity gets room to breathe. */
-.studio-page-hero{position:relative;isolation:isolate;overflow:hidden;min-height:520px;display:flex;align-items:center;background:radial-gradient(circle at 78% 40%,rgba(215,169,54,.09),transparent 28%),#071116;color:white;border-bottom-color:rgba(215,169,54,.24)}
-.studio-page-hero::after{content:"";position:absolute;z-index:-1;top:50%;right:max(24px,calc((100vw - 1180px)/2));width:min(43vw,480px);aspect-ratio:620/760;transform:translateY(-50%);background:url("assets/vitalis-brand-hero-2026.svg") center/contain no-repeat;opacity:.98;filter:drop-shadow(0 22px 38px rgba(0,0,0,.38))}
-.studio-page-hero .narrow{position:relative;z-index:1;max-width:1180px;padding-right:min(47%,530px)}
-.studio-page-hero h1{max-width:690px}
-.studio-page-hero .page-lead{max-width:640px;color:#c8d4d6}
-
-/* Footer carries the full studio lockup while contact information stays functional. */
-.site-footer{position:relative;border-top-color:rgba(215,169,54,.22)}
-.site-footer::before{content:"";position:absolute;top:0;left:50%;width:min(1180px,calc(100% - 44px));height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(215,169,54,.54),transparent)}
-.footer-grid{grid-template-columns:minmax(240px,285px) 1fr 1fr;gap:34px}
-.footer-grid>img{display:none}
-.footer-grid::before{content:"";display:block;width:270px;height:78px;background:url("assets/vitalis-lockup-2026.svg") left center/contain no-repeat}
-.footer-grid>div:not(.footer-links) strong{display:none}
-.footer-grid>div:not(.footer-links) span{max-width:390px}
-.footer-links a:hover{color:var(--brand-gold-bright)}
-
-@media(max-width:980px){
-  .footer-grid{grid-template-columns:minmax(220px,260px) 1fr}
-  .footer-grid::before{width:245px;height:72px}
-  .footer-links{grid-column:1/-1}
-  .studio-page-hero::after{right:24px;width:min(40vw,405px);opacity:.9}
-}
-@media(max-width:760px){
-  .brand{width:60px;height:60px}
-  .brand img{width:54px;height:54px}
-  .footer-grid{grid-template-columns:1fr;gap:18px}
-  .footer-grid::before{width:235px;height:68px}
-  .footer-links{grid-column:auto}
-  .studio-page-hero{min-height:auto;padding:92px 0 68px;background:linear-gradient(180deg,#071116,#0e1d24)}
-  .studio-page-hero::after{display:none}
-  .studio-page-hero .narrow{padding-right:0}
 }
