@@ -47,3 +47,51 @@ img[width][height]{height:auto}
     animation-iteration-count:1!important
   }
 }
+
+/* 2026 Vitalis identity refresh: keep the site game-first, elevate the studio chrome. */
+:root{--brand-gold:#d7a936;--brand-gold-bright:#f0cf7b;--brand-gold-deep:#8b6413}
+.site-header{border-bottom-color:rgba(215,169,54,.22);box-shadow:0 10px 30px rgba(0,0,0,.10)}
+.brand{width:82px;height:72px;overflow:visible;align-items:center}
+.brand img{width:64px;height:64px;filter:drop-shadow(0 5px 12px rgba(0,0,0,.28))}
+.site-nav>a:hover,.site-nav>a.active,.site-nav>a[aria-current="page"]{color:var(--brand-gold-bright)}
+.nav-cta,.button.primary{background:var(--brand-gold);border-color:rgba(240,207,123,.38)}
+.nav-cta:hover,.button.primary:hover{filter:brightness(1.06)}
+.eyebrow{color:#e3b94d}
+.eyebrow.dark,.text-link,.news-card>span,.update-list time,.contact-grid strong{color:var(--brand-gold-deep)}
+a:focus-visible,button:focus-visible{outline-color:var(--brand-gold-bright)}
+.signal-strip i{box-shadow:0 0 0 3px rgba(215,169,54,.08)}
+.dark-section{background:linear-gradient(135deg,#0e1d24 0%,#071116 100%)}
+
+/* The Studio page is the one place the full identity gets room to breathe. */
+.studio-page-hero{position:relative;isolation:isolate;overflow:hidden;min-height:520px;display:flex;align-items:center;background:radial-gradient(circle at 78% 40%,rgba(215,169,54,.09),transparent 28%),#071116;color:white;border-bottom-color:rgba(215,169,54,.24)}
+.studio-page-hero::after{content:"";position:absolute;z-index:-1;top:50%;right:max(24px,calc((100vw - 1180px)/2));width:min(43vw,480px);aspect-ratio:620/760;transform:translateY(-50%);background:url("assets/vitalis-brand-hero-2026.svg") center/contain no-repeat;opacity:.98;filter:drop-shadow(0 22px 38px rgba(0,0,0,.38))}
+.studio-page-hero .narrow{position:relative;z-index:1;max-width:1180px;padding-right:min(47%,530px)}
+.studio-page-hero h1{max-width:690px}
+.studio-page-hero .page-lead{max-width:640px;color:#c8d4d6}
+
+/* Footer carries the full studio lockup while contact information stays functional. */
+.site-footer{position:relative;border-top-color:rgba(215,169,54,.22)}
+.site-footer::before{content:"";position:absolute;top:0;left:50%;width:min(1180px,calc(100% - 44px));height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(215,169,54,.54),transparent)}
+.footer-grid{grid-template-columns:minmax(240px,285px) 1fr 1fr;gap:34px}
+.footer-grid>img{display:none}
+.footer-grid::before{content:"";display:block;width:270px;height:78px;background:url("assets/vitalis-lockup-2026.svg") left center/contain no-repeat}
+.footer-grid>div:not(.footer-links) strong{display:none}
+.footer-grid>div:not(.footer-links) span{max-width:390px}
+.footer-links a:hover{color:var(--brand-gold-bright)}
+
+@media(max-width:980px){
+  .footer-grid{grid-template-columns:minmax(220px,260px) 1fr}
+  .footer-grid::before{width:245px;height:72px}
+  .footer-links{grid-column:1/-1}
+  .studio-page-hero::after{right:24px;width:min(40vw,405px);opacity:.9}
+}
+@media(max-width:760px){
+  .brand{width:60px;height:60px}
+  .brand img{width:54px;height:54px}
+  .footer-grid{grid-template-columns:1fr;gap:18px}
+  .footer-grid::before{width:235px;height:68px}
+  .footer-links{grid-column:auto}
+  .studio-page-hero{min-height:auto;padding:92px 0 68px;background:linear-gradient(180deg,#071116,#0e1d24)}
+  .studio-page-hero::after{display:none}
+  .studio-page-hero .narrow{padding-right:0}
+}
