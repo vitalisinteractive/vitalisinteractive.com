@@ -1,24 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-labelledby="title desc">
   <title id="title">Vitalis Interactive</title>
-  <desc id="desc">Gold Vitalis V emblem</desc>
-  <defs>
-    <linearGradient id="gold" x1="0" y1="0" x2="0.9" y2="1">
-      <stop offset="0" stop-color="#fff0a8"/>
-      <stop offset="0.16" stop-color="#f2c85f"/>
-      <stop offset="0.48" stop-color="#d7a936"/>
-      <stop offset="0.78" stop-color="#9a6611"/>
-      <stop offset="1" stop-color="#f0cf7b"/>
-    </linearGradient>
-    <linearGradient id="goldDark" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#704304"/>
-      <stop offset="0.5" stop-color="#d7a936"/>
-      <stop offset="1" stop-color="#4f2d00"/>
-    </linearGradient>
-  </defs>
-  <rect width="256" height="256" rx="28" fill="#071116"/>
-  <path d="M22 24h52l54 162 54-162h52l-78 216h-56z" fill="url(#gold)" stroke="#f6d986" stroke-width="2"/>
-  <path d="M49 37h17l62 176 62-176h17l-69 190h-20z" fill="#071116" opacity=".84"/>
-  <path d="M66 38h12l50 145 50-145h12l-57 169h-10z" fill="url(#goldDark)" stroke="#f0cf7b" stroke-width="1.5"/>
-  <path d="M79 41h5l44 126 44-126h5l-49 146z" fill="#071116" opacity=".56"/>
-  <path d="M86 42h5l37 108 37-108h5l-42 128z" fill="url(#gold)"/>
+  <desc id="desc">Official black and gold Vitalis V mark</desc>
+  <image width="32" height="32" href="data:image/png;base64,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"/>
 </svg>
