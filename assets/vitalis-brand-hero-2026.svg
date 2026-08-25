@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 760" role="img" aria-labelledby="title desc">
+  <title id="title">Vitalis Interactive</title>
+  <desc id="desc">Premium gold Vitalis Interactive studio mark</desc>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#fff1ad"/>
+      <stop offset="0.14" stop-color="#f4ce6b"/>
+      <stop offset="0.48" stop-color="#d7a936"/>
+      <stop offset="0.76" stop-color="#9a6611"/>
+      <stop offset="1" stop-color="#f0cf7b"/>
+    </linearGradient>
+    <linearGradient id="goldDark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6f4305"/>
+      <stop offset="0.45" stop-color="#d7a936"/>
+      <stop offset="1" stop-color="#4e2c00"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%">
+      <feDropShadow dx="0" dy="14" stdDeviation="10" flood-color="#000" flood-opacity=".58"/>
+    </filter>
+  </defs>
+  <g transform="translate(93 22) scale(1.7)" filter="url(#shadow)">
+    <path d="M22 24h52l54 162 54-162h52l-78 216h-56z" fill="url(#gold)" stroke="#f7de94" stroke-width="2"/>
+    <path d="M49 37h17l62 176 62-176h17l-69 190h-20z" fill="#071116" opacity=".84"/>
+    <path d="M66 38h12l50 145 50-145h12l-57 169h-10z" fill="url(#goldDark)" stroke="#f0cf7b" stroke-width="1.5"/>
+    <path d="M79 41h5l44 126 44-126h5l-49 146z" fill="#071116" opacity=".56"/>
+    <path d="M86 42h5l37 108 37-108h5l-42 128z" fill="url(#gold)"/>
+  </g>
+  <text x="310" y="620" text-anchor="middle" fill="url(#gold)" font-family="Georgia, 'Times New Roman', serif" font-size="70" letter-spacing="13">VITALIS</text>
+  <line x1="96" y1="666" x2="184" y2="666" stroke="#d7a936" stroke-width="2"/>
+  <line x1="436" y1="666" x2="524" y2="666" stroke="#d7a936" stroke-width="2"/>
+  <text x="310" y="676" text-anchor="middle" fill="#efd27a" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="600" letter-spacing="10">INTERACTIVE</text>
+</svg>
