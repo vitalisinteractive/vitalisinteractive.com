@@ -1,4 +1,12 @@
 (() => {
+  if (!document.querySelector('link[data-vitalis-exact-logo]')) {
+    const exactLogoStyles = document.createElement('link');
+    exactLogoStyles.rel = 'stylesheet';
+    exactLogoStyles.href = '/exact-logo-fix.css';
+    exactLogoStyles.dataset.vitalisExactLogo = '';
+    document.head.appendChild(exactLogoStyles);
+  }
+
   if (!window.__vitalisMetricoolTrackerLoaded) {
     window.__vitalisMetricoolTrackerLoaded = true;
     const metricoolScript = document.createElement('script');
@@ -7,7 +15,7 @@
     metricoolScript.addEventListener('load', () => {
       window.beTracker.t({ hash: 'f0e9f7ba2d868aa7d04d28c28366f0ec' });
     });
-    document.head.append(metricoolScript);
+    document.head.appendChild(metricoolScript);
   }
 
   const menu = document.querySelector('[data-menu]');
