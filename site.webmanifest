@@ -3,8 +3,8 @@
   "short_name": "Vitalis",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#071116",
-  "theme_color": "#071116",
+  "background_color": "#061014",
+  "theme_color": "#061014",
   "icons": [
     {
       "src": "/assets/vitalis-logo-v3.svg",
