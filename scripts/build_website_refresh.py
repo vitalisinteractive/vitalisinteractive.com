@@ -58,7 +58,7 @@ def image(item: dict, alt: str, eager=False, css='') -> str:
 def header(current: str) -> str:
     links = ''.join(f'<a href="{path}"' + (' aria-current="page"' if current == path else '') + f'>{label}</a>' for label, path in NAV)
     return f'''<header class="vi-header"><div class="vi-wrap vi-header-inner">
-<a class="vi-brand" href="index.html" aria-label="Vitalis Interactive home"><img src="assets/vitalis-mark-exact-2026.webp" width="56" height="56" alt="Vitalis Interactive"><span>VITALIS<span>INTERACTIVE</span></span></a>
+<a class="vi-brand" href="index.html" aria-label="Vitalis Interactive home"><img src="assets/vitalis-master-exact-2026.webp" width="56" height="56" alt="Vitalis Interactive"><span>VITALIS<span>INTERACTIVE</span></span></a>
 <button class="vi-menu" type="button" data-menu aria-expanded="false" aria-controls="site-navigation" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
 <nav class="vi-nav" id="site-navigation" data-nav aria-label="Primary navigation">{links}</nav>
 </div></header>'''
@@ -66,14 +66,14 @@ def header(current: str) -> str:
 FOOTER = '''<footer class="vi-footer"><div class="vi-wrap vi-footer-top">
 <div class="vi-signature"><img src="assets/vitalis-master-exact-2026.webp" width="100" height="100" alt="Vitalis Interactive"><p>Independent simulation games.<br>Business, ownership, and the work in between.</p></div>
 <div class="vi-footer-contacts"><div><span>Business, press &amp; creators</span><a href="mailto:hello@vitalisinteractive.com">hello@vitalisinteractive.com</a></div><div><span>Player support</span><a href="mailto:support@vitalisinteractive.com">support@vitalisinteractive.com</a></div></div>
-</div><div class="vi-wrap vi-footer-bottom"><span>© <span data-year>2026</span> Vitalis Interactive</span><div><a href="dispatch.html">Email updates</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a></div></div></footer>'''
+</div><div class="vi-wrap vi-footer-bottom"><span>© <span data-year>2026</span> Vitalis Interactive</span><div><a href="dispatch.html">Email updates</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a></div></div></div></footer>'''
 
 def document(path: str, title: str, description: str, body: str, game=None, legacy=False) -> str:
     canonical = DOMAIN + ('' if path == 'index.html' else path)
     preview = f'assets/games/{game}-capsule.webp' if game else 'assets/vitalis-master-exact-2026.webp'
     data = {'@context': 'https://schema.org', '@type': 'WebPage', 'name': title, 'url': canonical,
             'publisher': {'@type': 'Organization', 'name': 'Vitalis Interactive', 'url': DOMAIN}}
-    if game:
+    if game and path == PAGES[game]:
         data.update({'@type': 'VideoGame', 'name': NAMES[game], 'sameAs': LINKS[game], 'image': DOMAIN + preview})
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
