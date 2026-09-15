@@ -1,0 +1,82 @@
+name: Website multipage review
+on:
+  push:
+    branches: [design/website-multipage-existing-art-03]
+    paths:
+      - scripts/build_website_refresh.py
+      - scripts/check_refresh_browser.py
+      - studio-refresh.css
+      - .github/workflows/website-multipage-review.yml
+permissions:
+  contents: write
+concurrency:
+  group: website-multipage-review
+  cancel-in-progress: false
+jobs:
+  build-and-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: design/website-multipage-existing-art-03
+          fetch-depth: 0
+          clean: false
+      - name: Verify candidate scope
+        run: |
+          test "$GITHUB_REF" = "refs/heads/design/website-multipage-existing-art-03"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          test -z "$(git status --porcelain)"
+          test -f assets/games/sources.json
+      - name: Install isolated browser-test dependencies
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Build the twelve real pages
+        run: python scripts/build_website_refresh.py
+      - name: Validate full site and whitespace
+        run: |
+          python scripts/check_site.py
+          git diff --check
+      - name: Render and exercise desktop and mobile pages
+        run: python scripts/check_refresh_browser.py
+      - name: Preserve passing candidate on review branch only
+        run: |
+          test "$GITHUB_REF" = "refs/heads/design/website-multipage-existing-art-03"
+          REMOTE_HEAD=$(git ls-remote origin "$GITHUB_REF" | cut -f1)
+          test "$REMOTE_HEAD" = "$GITHUB_SHA" || { echo 'Branch advanced; refusing to overwrite concurrent work.'; exit 1; }
+          git add -- '*.html' site.js scripts/check_site.py sitemap.xml README.md DESIGN.md review/website-multipage-03
+          if ! git diff --cached --quiet; then
+            git config user.name 'Vitalis website build'
+            git config user.email 'noreply@vitalisinteractive.com'
+            git commit -m 'feat: preserve browser-tested twelve-page website candidate with existing Steam art'
+            git push origin "HEAD:$GITHUB_REF"
+          fi
+          echo '## Website review candidate' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Twelve separate pages built and browser-tested. Existing Steam artwork retained. No live deployment, main-branch write, DNS change or newsletter submission.' >> "$GITHUB_STEP_SUMMARY"
+          echo "Candidate commit: $(git rev-parse HEAD)" >> "$GITHUB_STEP_SUMMARY"
+      - name: Save website for owner review
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vitalis-multipage-website
+          retention-days: 14
+          include-hidden-files: true
+          path: |
+            *.html
+            *.css
+            site.js
+            site.webmanifest
+            sitemap.xml
+            robots.txt
+            CNAME
+            .nojekyll
+            assets/
+      - name: Save browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-browser-evidence
+          retention-days: 14
+          if-no-files-found: warn
+          path: review/website-multipage-03/

@@ -17,7 +17,7 @@ An established institution crossed with an honest indie-development workbench: s
 
 ## Rules
 - Use real gameplay and dated studio activity before decorative mockups.
-- Dark teal/ink, warm paper, and restrained gold are the core palette.
+- Neutral charcoal, off-white, and restrained gold are the website palette. Existing game art retains its own colors.
 - Public copy must be plainspoken, specific, and supported by the game or studio activity.
 - Avoid formulaic AI-writing patterns, abstract brand manifestos, repeated three-part slogans, and generic corporate filler.
 - Editorial serif headlines may carry emotion; body copy must use ordinary verbs and natural sentence rhythm.
@@ -36,7 +36,7 @@ An established institution crossed with an honest indie-development workbench: s
 - Direct sales may be designed for, but no purchase CTA may appear until checkout, fulfillment, refund, privacy, and support systems are ready.
 
 ## Typography
-- Headlines: Georgia / Times fallback.
+- New studio-page headlines: Arial / Helvetica / system sans-serif, with deliberate weight and spacing.
 - Interface/body: Arial / Helvetica fallback.
 - Use large type sparingly; one dominant statement per section.
 
@@ -47,3 +47,15 @@ An established institution crossed with an honest indie-development workbench: s
 
 ## Responsive
 Mobile layouts must preserve hierarchy, real imagery, readable tap targets, and logo legibility without decorative overflow.
+
+
+## September 2026 multipage refresh
+
+The current-art review uses neutral charcoal, off-white and restrained gold.
+`studio-refresh.css` supplies the new shared presentation.
+MSO and Dealer Principal now have their own pages. The full newsletter signup
+retains the existing Brevo embed on `dispatch.html`, linked from every footer.
+Home is a short introduction, not a single-page application.
+Artwork provenance is recorded in `assets/games/sources.json`. No generated
+substitute art from the early design mockups is used.
+Publication still requires owner approval; this task does not change hosting.

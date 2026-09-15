@@ -1,0 +1,2248 @@
+{
+  "pages": [
+    "404.html",
+    "contact.html",
+    "dealer-principal.html",
+    "dispatch.html",
+    "family-office-simulator.html",
+    "games.html",
+    "index.html",
+    "latest.html",
+    "main-street-operator.html",
+    "privacy.html",
+    "studio.html",
+    "support.html"
+  ],
+  "widths": [
+    320,
+    390,
+    768,
+    1024,
+    1440,
+    1920
+  ],
+  "checks": [
+    {
+      "check": "404.html @ 320px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 320px: one h1",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 320px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 320px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "404.html @ 320px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "404.html @ 320px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 320px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 320px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 320px: one h1",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 320px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 320px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "contact.html @ 320px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "contact.html @ 320px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 320px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 320px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 320px: one h1",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 320px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 320px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dealer-principal.html @ 320px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dealer-principal.html @ 320px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 320px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 320px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 320px: one h1",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 320px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 320px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dispatch.html @ 320px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dispatch.html @ 320px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 320px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 320px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 320px: one h1",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 320px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 320px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "family-office-simulator.html @ 320px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "family-office-simulator.html @ 320px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 320px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 320px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 320px: one h1",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 320px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 320px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "games.html @ 320px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "games.html @ 320px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 320px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 320px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 320px: one h1",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 320px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 320px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "index.html @ 320px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "index.html @ 320px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 320px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 320px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 320px: one h1",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 320px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 320px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "latest.html @ 320px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "latest.html @ 320px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 320px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 320px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 320px: one h1",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 320px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 320px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "main-street-operator.html @ 320px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "main-street-operator.html @ 320px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 320px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 320px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 320px: one h1",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 320px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 320px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "privacy.html @ 320px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "privacy.html @ 320px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 320px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 320px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 320px: one h1",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 320px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 320px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "studio.html @ 320px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "studio.html @ 320px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 320px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 320px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 320px: one h1",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 320px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 320px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "support.html @ 320px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "support.html @ 320px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 320px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 390px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 390px: one h1",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 390px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 390px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "404.html @ 390px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "404.html @ 390px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 390px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 390px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 390px: one h1",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 390px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 390px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "contact.html @ 390px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "contact.html @ 390px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 390px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 390px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 390px: one h1",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 390px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 390px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dealer-principal.html @ 390px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dealer-principal.html @ 390px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 390px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 390px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 390px: one h1",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 390px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 390px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dispatch.html @ 390px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dispatch.html @ 390px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 390px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 390px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 390px: one h1",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 390px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 390px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "family-office-simulator.html @ 390px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "family-office-simulator.html @ 390px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 390px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 390px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 390px: one h1",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 390px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 390px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "games.html @ 390px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "games.html @ 390px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 390px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 390px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 390px: one h1",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 390px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 390px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "index.html @ 390px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "index.html @ 390px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 390px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 390px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 390px: one h1",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 390px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 390px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "latest.html @ 390px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "latest.html @ 390px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 390px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 390px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 390px: one h1",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 390px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 390px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "main-street-operator.html @ 390px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "main-street-operator.html @ 390px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 390px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 390px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 390px: one h1",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 390px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 390px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "privacy.html @ 390px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "privacy.html @ 390px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 390px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 390px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 390px: one h1",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 390px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 390px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "studio.html @ 390px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "studio.html @ 390px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 390px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 390px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 390px: one h1",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 390px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 390px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "support.html @ 390px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "support.html @ 390px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 390px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 768px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 768px: one h1",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 768px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 768px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "404.html @ 768px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "404.html @ 768px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 768px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 768px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 768px: one h1",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 768px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 768px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "contact.html @ 768px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "contact.html @ 768px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 768px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 768px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 768px: one h1",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 768px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 768px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dealer-principal.html @ 768px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dealer-principal.html @ 768px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 768px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 768px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 768px: one h1",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 768px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 768px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dispatch.html @ 768px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dispatch.html @ 768px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 768px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 768px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 768px: one h1",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 768px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 768px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "family-office-simulator.html @ 768px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "family-office-simulator.html @ 768px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 768px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 768px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 768px: one h1",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 768px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 768px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "games.html @ 768px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "games.html @ 768px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 768px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 768px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 768px: one h1",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 768px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 768px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "index.html @ 768px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "index.html @ 768px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 768px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 768px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 768px: one h1",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 768px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 768px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "latest.html @ 768px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "latest.html @ 768px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 768px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 768px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 768px: one h1",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 768px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 768px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "main-street-operator.html @ 768px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "main-street-operator.html @ 768px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 768px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 768px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 768px: one h1",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 768px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 768px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "privacy.html @ 768px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "privacy.html @ 768px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 768px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 768px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 768px: one h1",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 768px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 768px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "studio.html @ 768px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "studio.html @ 768px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 768px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 768px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 768px: one h1",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 768px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 768px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "support.html @ 768px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "support.html @ 768px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 768px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 1024px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 1024px: one h1",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 1024px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 1024px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "404.html @ 1024px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "404.html @ 1024px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 1024px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 1024px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 1024px: one h1",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 1024px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 1024px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "contact.html @ 1024px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "contact.html @ 1024px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 1024px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 1024px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 1024px: one h1",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 1024px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 1024px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dealer-principal.html @ 1024px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dealer-principal.html @ 1024px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 1024px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 1024px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 1024px: one h1",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 1024px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 1024px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dispatch.html @ 1024px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dispatch.html @ 1024px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 1024px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 1024px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 1024px: one h1",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 1024px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 1024px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "family-office-simulator.html @ 1024px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "family-office-simulator.html @ 1024px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 1024px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 1024px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 1024px: one h1",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 1024px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 1024px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "games.html @ 1024px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "games.html @ 1024px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 1024px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 1024px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 1024px: one h1",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 1024px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 1024px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "index.html @ 1024px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "index.html @ 1024px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 1024px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 1024px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 1024px: one h1",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 1024px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 1024px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "latest.html @ 1024px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "latest.html @ 1024px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 1024px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 1024px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 1024px: one h1",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 1024px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 1024px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "main-street-operator.html @ 1024px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "main-street-operator.html @ 1024px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 1024px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 1024px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 1024px: one h1",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 1024px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 1024px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "privacy.html @ 1024px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "privacy.html @ 1024px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 1024px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 1024px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 1024px: one h1",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 1024px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 1024px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "studio.html @ 1024px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "studio.html @ 1024px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 1024px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 1024px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 1024px: one h1",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 1024px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 1024px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "support.html @ 1024px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "support.html @ 1024px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 1024px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 1440px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 1440px: one h1",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 1440px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 1440px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "404.html @ 1440px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "404.html @ 1440px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 1440px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 1440px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 1440px: one h1",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 1440px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 1440px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "contact.html @ 1440px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "contact.html @ 1440px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 1440px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 1440px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 1440px: one h1",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 1440px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 1440px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dealer-principal.html @ 1440px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dealer-principal.html @ 1440px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 1440px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 1440px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 1440px: one h1",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 1440px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 1440px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dispatch.html @ 1440px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dispatch.html @ 1440px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 1440px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 1440px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 1440px: one h1",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 1440px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 1440px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "family-office-simulator.html @ 1440px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "family-office-simulator.html @ 1440px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 1440px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 1440px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 1440px: one h1",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 1440px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 1440px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "games.html @ 1440px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "games.html @ 1440px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 1440px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 1440px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 1440px: one h1",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 1440px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 1440px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "index.html @ 1440px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "index.html @ 1440px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 1440px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 1440px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 1440px: one h1",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 1440px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 1440px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "latest.html @ 1440px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "latest.html @ 1440px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 1440px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 1440px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 1440px: one h1",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 1440px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 1440px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "main-street-operator.html @ 1440px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "main-street-operator.html @ 1440px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 1440px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 1440px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 1440px: one h1",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 1440px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 1440px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "privacy.html @ 1440px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "privacy.html @ 1440px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 1440px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 1440px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 1440px: one h1",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 1440px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 1440px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "studio.html @ 1440px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "studio.html @ 1440px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 1440px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 1440px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 1440px: one h1",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 1440px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 1440px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "support.html @ 1440px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "support.html @ 1440px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 1440px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 1920px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 1920px: one h1",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 1920px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 1920px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "404.html @ 1920px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "404.html @ 1920px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "404.html @ 1920px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 1920px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 1920px: one h1",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 1920px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 1920px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "contact.html @ 1920px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "contact.html @ 1920px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "contact.html @ 1920px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 1920px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 1920px: one h1",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 1920px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 1920px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dealer-principal.html @ 1920px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dealer-principal.html @ 1920px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "dealer-principal.html @ 1920px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 1920px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 1920px: one h1",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 1920px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 1920px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dispatch.html @ 1920px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "dispatch.html @ 1920px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "dispatch.html @ 1920px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 1920px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 1920px: one h1",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 1920px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 1920px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "family-office-simulator.html @ 1920px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "family-office-simulator.html @ 1920px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "family-office-simulator.html @ 1920px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 1920px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 1920px: one h1",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 1920px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 1920px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "games.html @ 1920px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "games.html @ 1920px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "games.html @ 1920px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 1920px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 1920px: one h1",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 1920px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 1920px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "index.html @ 1920px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "index.html @ 1920px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "index.html @ 1920px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 1920px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 1920px: one h1",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 1920px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 1920px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "latest.html @ 1920px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "latest.html @ 1920px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "latest.html @ 1920px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 1920px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 1920px: one h1",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 1920px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 1920px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "main-street-operator.html @ 1920px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "main-street-operator.html @ 1920px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "main-street-operator.html @ 1920px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 1920px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 1920px: one h1",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 1920px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 1920px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "privacy.html @ 1920px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "privacy.html @ 1920px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "privacy.html @ 1920px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 1920px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 1920px: one h1",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 1920px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 1920px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "studio.html @ 1920px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "studio.html @ 1920px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "studio.html @ 1920px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 1920px: HTTP 200",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 1920px: one h1",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 1920px: no horizontal overflow",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 1920px: all local images decoded",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "support.html @ 1920px: no JavaScript errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "support.html @ 1920px: six real navigation destinations",
+      "pass": true
+    },
+    {
+      "check": "support.html @ 1920px: no game-dialog UI",
+      "pass": true
+    },
+    {
+      "check": "Mobile navigation starts closed",
+      "pass": true
+    },
+    {
+      "check": "Mobile navigation opens",
+      "pass": true
+    },
+    {
+      "check": "Escape closes menu and restores focus",
+      "pass": true
+    },
+    {
+      "check": "Games link opens a separate page",
+      "pass": true
+    },
+    {
+      "check": "MSO opens its own page",
+      "pass": true
+    },
+    {
+      "check": "Browser Back returns to Games",
+      "pass": true
+    },
+    {
+      "check": "DP opens its own page",
+      "pass": true
+    },
+    {
+      "check": "DP wishlist targets owner-supplied Steam page",
+      "pass": true
+    },
+    {
+      "check": "FOS Steam destination correct",
+      "pass": true
+    },
+    {
+      "check": "MSO Steam destination correct",
+      "pass": true
+    },
+    {
+      "check": "September 14 update present",
+      "pass": true
+    },
+    {
+      "check": "Original newsletter provider retained",
+      "pass": true
+    }
+  ],
+  "failures": [],
+  "limits": "Chromium checks only. External analytics and Brevo form are stubbed to avoid real tracking/subscriptions. This is not a full accessibility certification.",
+  "screenshots": {
+    "home-mobile.png": "45fdf4896e55b8659db0efa8df5cd7fc8e60bbd1b835176375f0309d219cc796",
+    "dealer-principal.png": "fd2fe10a6ac6afbe959bc263510826705a82d71e16d91e8ce959baa112c62d38",
+    "family-office-simulator.png": "573958adb739383c0be583d6813468e581d9a245e8d7f9b21235180cb86fc56c",
+    "games.png": "f3c0e7752af52c24a9de02bf5e4e47963a01bc2cf5050d5339f40edb4d1343b1",
+    "home-desktop.png": "05c9d6b03cc85cae8730e3df1f959b3d334ebbbdccb132246863886c54763d3e",
+    "latest.png": "4417de422bc1590326cfb4e8401bf42df0b2be312d3ed7d18ead894a7ebc5984",
+    "main-street-operator.png": "c169afc5b9c9e3a83b1b952fc94407134f13a5f4d8cb064c1063e501d5c9a567"
+  },
+  "passed": 516,
+  "total": 516,
+  "status": "PASS"
+}
