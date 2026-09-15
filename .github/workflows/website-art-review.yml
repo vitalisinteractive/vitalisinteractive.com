@@ -1,0 +1,46 @@
+name: Website artwork review
+on:
+  push:
+    branches: [design/website-multipage-existing-art-03]
+    paths:
+      - scripts/refresh_steam_assets.py
+      - .github/workflows/website-art-review.yml
+permissions:
+  contents: write
+concurrency:
+  group: website-art-review
+  cancel-in-progress: false
+jobs:
+  artwork:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          clean: false
+      - name: Verify isolated task branch
+        run: |
+          test "$GITHUB_REF" = "refs/heads/design/website-multipage-existing-art-03"
+          test -z "$(git status --porcelain)"
+      - name: Install image decoder
+        run: python -m pip install Pillow==11.3.0
+      - name: Retrieve existing Steam capsules
+        run: python scripts/refresh_steam_assets.py
+      - name: Preserve artwork on review branch only
+        run: |
+          test "$GITHUB_REF" = "refs/heads/design/website-multipage-existing-art-03"
+          REMOTE_HEAD=$(git ls-remote origin "$GITHUB_REF" | cut -f1)
+          test "$REMOTE_HEAD" = "$GITHUB_SHA" || { echo 'Branch advanced; refusing to overwrite concurrent work.'; exit 1; }
+          git add -- assets/games
+          if ! git diff --cached --quiet; then
+            git config user.name 'Vitalis website build'
+            git config user.email 'noreply@vitalisinteractive.com'
+            git commit -m 'art: preserve verified existing Steam capsules and public gameplay'
+            git push origin "HEAD:$GITHUB_REF"
+          fi
+      - name: Store artwork review artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-steam-artwork
+          path: assets/games/
+          retention-days: 14
