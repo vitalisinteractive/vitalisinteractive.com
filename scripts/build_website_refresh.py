@@ -66,7 +66,7 @@ def header(current: str) -> str:
 FOOTER = '''<footer class="vi-footer"><div class="vi-wrap vi-footer-top">
 <div class="vi-signature"><img src="assets/vitalis-master-exact-2026.webp" width="100" height="100" alt="Vitalis Interactive"><p>Independent simulation games.<br>Business, ownership, and the work in between.</p></div>
 <div class="vi-footer-contacts"><div><span>Business, press &amp; creators</span><a href="mailto:hello@vitalisinteractive.com">hello@vitalisinteractive.com</a></div><div><span>Player support</span><a href="mailto:support@vitalisinteractive.com">support@vitalisinteractive.com</a></div></div>
-</div><div class="vi-wrap vi-footer-bottom"><span>© <span data-year>2026</span> Vitalis Interactive</span><div><a href="dispatch.html">Email updates</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a></div></div></div></footer>'''
+</div><div class="vi-wrap vi-footer-bottom"><span>© <span data-year>2026</span> Vitalis Interactive</span><div><a href="dispatch.html">Email updates</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a></div></div></footer>'''
 
 def document(path: str, title: str, description: str, body: str, game=None, legacy=False) -> str:
     canonical = DOMAIN + ('' if path == 'index.html' else path)
