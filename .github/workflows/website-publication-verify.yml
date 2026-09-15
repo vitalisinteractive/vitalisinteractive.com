@@ -1,0 +1,196 @@
+name: Verify live website publication
+on:
+  push:
+    branches: [verify/website-publication-2026-09-15]
+    paths: [.github/workflows/website-publication-verify.yml]
+permissions:
+  contents: read
+concurrency:
+  group: verify-website-publication-2026-09-15
+  cancel-in-progress: false
+jobs:
+  verify-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: 5a19ca75ea88b1db71ee88e8798e32662c5ca40b
+          persist-credentials: false
+      - name: Confirm exact released source and static checks
+        run: |
+          test "$(git rev-parse HEAD)" = '5a19ca75ea88b1db71ee88e8798e32662c5ca40b'
+          test -z "$(git status --porcelain)"
+          python3 scripts/check_site.py
+          git diff --check
+      - name: Compare live pages and referenced assets with approved source
+        run: |
+          python3 - <<'PY'
+          import concurrent.futures
+          import hashlib
+          import json
+          import time
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import urlsplit, urljoin
+          from urllib.request import Request, urlopen
+
+          ROOT = Path.cwd()
+          OUT = ROOT / '_publication_check'
+          OUT.mkdir(exist_ok=True)
+          BASE = 'https://vitalisinteractive.com/'
+          RELEASE = '5a19ca75ea88b1db71ee88e8798e32662c5ca40b'
+          files = {p.name for p in ROOT.glob('*.html')}
+          files.update(('sitemap.xml', 'robots.txt', 'site.webmanifest', 'assets/games/sources.json'))
+
+          class Assets(HTMLParser):
+              def handle_starttag(self, tag, attrs):
+                  attrs = dict(attrs)
+                  value = attrs.get('src') if tag in ('img', 'script') else attrs.get('href') if tag == 'link' else None
+                  if not value:
+                      return
+                  parsed = urlsplit(value)
+                  if not parsed.scheme and not parsed.netloc and parsed.path:
+                      target = parsed.path.lstrip('/')
+                      if (ROOT / target).is_file():
+                          files.add(target)
+
+          for file in ROOT.glob('*.html'):
+              Assets().feed(file.read_text())
+
+          def verify(path):
+              expected = (ROOT / path).read_bytes()
+              url = BASE if path == 'index.html' else urljoin(BASE, path)
+              record = {'path': path, 'url': url, 'expected_sha256': hashlib.sha256(expected).hexdigest()}
+              try:
+                  request = Request(url, headers={'User-Agent': 'VitalisWebsitePublicationVerification/1.0', 'Cache-Control': 'no-cache'})
+                  with urlopen(request, timeout=25) as response:
+                      if urlsplit(response.geturl()).hostname not in ('vitalisinteractive.com', 'www.vitalisinteractive.com'):
+                          raise RuntimeError('Unexpected redirect host')
+                      actual = response.read(8000001)
+                      record.update(status=response.status, final_url=response.geturl(), content_type=response.headers.get('Content-Type'), actual_sha256=hashlib.sha256(actual).hexdigest())
+                      record['pass'] = response.status == 200 and actual == expected
+              except Exception as exc:
+                  record.update({'pass': False, 'error': str(exc)})
+              return record
+
+          attempts = []
+          for number in range(1, 7):
+              with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
+                  results = list(pool.map(verify, sorted(files)))
+              failed = [r for r in results if not r['pass']]
+              attempts.append({'attempt': number, 'failed': failed})
+              print(f'Live source comparison {number}: {len(results)-len(failed)}/{len(results)} passed', flush=True)
+              if not failed:
+                  break
+              if number < 6:
+                  time.sleep(20)
+
+          report = {'release_sha': RELEASE, 'checked_utc': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()), 'status': 'FAIL' if failed else 'PASS', 'total': len(results), 'passed': len(results)-len(failed), 'checks': results, 'attempts': attempts}
+          (OUT / 'live-content-results.json').write_text(json.dumps(report, indent=2)+'\n')
+          for result in results:
+              print(json.dumps(result), flush=True)
+          if failed:
+              raise SystemExit('Live content did not match the approved release; do not claim verified publication.')
+          PY
+      - name: Install isolated browser-check dependencies
+        run: |
+          python3 -m pip install playwright==1.55.0
+          python3 -m playwright install --with-deps chromium
+      - name: Check actual live desktop and mobile pages
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import time
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+
+          ROOT = Path.cwd()
+          OUT = ROOT / '_publication_check'
+          BASE = 'https://vitalisinteractive.com/'
+          pages = sorted(p.name for p in ROOT.glob('*.html'))
+          results = []
+          errors = []
+          def check(label, ok, detail=None):
+              result = {'check': label, 'pass': bool(ok)}
+              if detail is not None:
+                  result['detail'] = detail
+              results.append(result)
+
+          with sync_playwright() as p:
+              browser = p.chromium.launch()
+              context = browser.new_context(reduced_motion='reduce', device_scale_factor=1)
+              context.route('https://tracker.metricool.com/**', lambda r: r.fulfill(status=200, content_type='application/javascript', body='window.beTracker={t:function(){}};'))
+              context.route('https://*.sibforms.com/**', lambda r: r.fulfill(status=200, content_type='text/html', body='<html lang="en"><title>Newsletter verification</title><body>Existing newsletter endpoint preserved. No subscription is submitted during verification.</body></html>'))
+              page = context.new_page()
+              page.on('pageerror', lambda e: errors.append(str(e)))
+              for width in (390, 1440):
+                  page.set_viewport_size({'width': width, 'height': 950})
+                  for name in pages:
+                      errors.clear()
+                      response = page.goto(BASE + ('' if name == 'index.html' else name), wait_until='networkidle', timeout=45000)
+                      page.evaluate('''async () => { await Promise.all(Array.from(document.images).map(async img => { img.loading='eager'; try { await img.decode(); } catch (_) {} })); }''')
+                      prefix = f'LIVE {name} @ {width}px'
+                      check(prefix+': HTTP 200', response.status == 200)
+                      check(prefix+': approved refresh marker', page.locator('body[data-refresh="03"]').count() == 1)
+                      check(prefix+': one main heading', page.locator('main h1').count() == 1)
+                      check(prefix+': no horizontal overflow', page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'))
+                      missing = page.evaluate('Array.from(document.images).filter(i=>!i.complete || !i.naturalWidth).map(i=>i.src)')
+                      check(prefix+': all images decoded', not missing, missing)
+                      check(prefix+': no JavaScript exceptions', not errors, list(errors))
+                      check(prefix+': six separate-page navigation links', page.locator('nav[aria-label="Primary navigation"] a[href$=".html"]').count() == 6)
+                      if name == 'index.html':
+                          page.screenshot(path=str(OUT / ('live-home-mobile.png' if width==390 else 'live-home-desktop.png')), full_page=True)
+                      if width == 1440 and name in ('games.html', 'main-street-operator.html', 'dealer-principal.html', 'latest.html'):
+                          page.screenshot(path=str(OUT / ('live-'+name.replace('.html','.png'))), full_page=True)
+              page.set_viewport_size({'width': 390, 'height': 844})
+              page.goto(BASE, wait_until='networkidle')
+              button = page.locator('[data-menu]')
+              nav = page.locator('[data-nav]')
+              button.click()
+              check('LIVE mobile menu opens', nav.is_visible() and button.get_attribute('aria-expanded')=='true')
+              nav.locator('a').first.focus()
+              page.keyboard.press('Escape')
+              check('LIVE Escape closes menu and restores focus', button.get_attribute('aria-expanded')=='false' and button.evaluate('(e)=>e===document.activeElement'))
+              button.click()
+              nav.get_by_role('link',name='Games',exact=True).click()
+              check('LIVE Games opens its own page', page.url.endswith('/games.html'))
+              page.get_by_role('link',name='Explore Main Street Operator',exact=True).click()
+              check('LIVE MSO opens its own page', page.url.endswith('/main-street-operator.html'))
+              check('LIVE MSO wishlist URL', page.locator('main a[href="https://store.steampowered.com/app/5070740/Main_Street_Operator/"]').count()>0)
+              page.go_back()
+              check('LIVE browser Back returns to Games', page.url.endswith('/games.html'))
+              page.get_by_role('link',name='Explore Dealer Principal',exact=True).click()
+              check('LIVE DP opens its own page', page.url.endswith('/dealer-principal.html'))
+              check('LIVE DP wishlist URL', page.locator('main a[href="https://store.steampowered.com/app/5158570/Dealer_Principal_The_Dealership_Simulator/"]').count()>0)
+              page.goto(BASE+'family-office-simulator.html',wait_until='networkidle')
+              check('LIVE FOS Steam URL', page.locator('main a[href="https://store.steampowered.com/app/4820790/Family_Office_Simulator/"]').count()>0)
+              page.goto(BASE+'latest.html',wait_until='networkidle')
+              check('LIVE September 14 update present', page.locator('time[datetime="2026-09-14"]').count()==1)
+              page.goto(BASE+'dispatch.html',wait_until='networkidle')
+              check('LIVE original Brevo endpoint retained', page.locator('iframe[src^="https://fdca8306.sibforms.com/"]').count()==1)
+              browser.close()
+
+          failures = [r for r in results if not r['pass']]
+          report = {'release_sha':'5a19ca75ea88b1db71ee88e8798e32662c5ca40b','checked_utc':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'status':'FAIL' if failures else 'PASS','total':len(results),'passed':len(results)-len(failures),'failures':failures,'checks':results,'limits':'Actual public HTTPS pages in Chromium at 390 and 1440 px. Analytics and newsletter iframe stubbed to avoid tracking/subscriptions. Steam destinations checked without purchases or wishlist writes; no full accessibility certification.','screenshots':{path.name:hashlib.sha256(path.read_bytes()).hexdigest() for path in OUT.glob('*.png')}}
+          (OUT/'live-browser-results.json').write_text(json.dumps(report,indent=2)+'\n')
+          print(f'{report["status"]}: {report["passed"]}/{report["total"]} live browser checks',flush=True)
+          for failure in failures:
+              print(json.dumps(failure),flush=True)
+          if failures:
+              raise SystemExit(1)
+          PY
+      - name: Preserve verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vitalis-live-publication-verification
+          path: _publication_check/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Record successful publication verification
+        run: |
+          echo '## Verified live publication' >> "$GITHUB_STEP_SUMMARY"
+          echo 'https://vitalisinteractive.com/ serves the approved release 5a19ca75ea88b1db71ee88e8798e32662c5ca40b.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Live pages and referenced assets match the approved source. Live desktop/mobile checks passed. No production modifications were made by this read-only verification job.' >> "$GITHUB_STEP_SUMMARY"
