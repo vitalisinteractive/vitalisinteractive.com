@@ -1,0 +1,164 @@
+{
+  "fos": {
+    "appid": 4820790,
+    "name": "Family Office Simulator",
+    "capsule": {
+      "source_url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4820790/80d1b2503aa7728c9aabc4677c7b07457beaeb0c/header.jpg?t=1785250839",
+      "source_sha256": "56ea27e6ade43a7b7e7a5cb1948af88afe371cd918dde22f48c2e9ea0f177dd2",
+      "path": "assets/games/fos-capsule.webp",
+      "width": 460,
+      "height": 215,
+      "original_width": 460,
+      "original_height": 215,
+      "sha256": "b9ca5d26629493e86ce2df2ac6f78455759b844cd143c9cc3774e96599a98ddb",
+      "treatment": "aspect-preserving resize and WebP compression only"
+    },
+    "screenshots": [
+      {
+        "source_url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4820790/03d31b222e0bb3b7548033f1cb418ae90ec0de66/ss_03d31b222e0bb3b7548033f1cb418ae90ec0de66.1920x1080.jpg?t=1785250839",
+        "source_sha256": "c0a2513ddd208c832e11e6c415bd0a6a1d5f55111e2f6b5330355eaaa2cc0e23",
+        "path": "assets/games/fos-gameplay-1.webp",
+        "width": 1920,
+        "height": 1080,
+        "original_width": 1920,
+        "original_height": 1080,
+        "sha256": "67f6b8047465cc53e51854a2c885709af094b908bfa102c2f5558ae7a6237d6c",
+        "treatment": "aspect-preserving resize and WebP compression only"
+      },
+      {
+        "source_url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4820790/a9874181d525bcd03ce332e04866bb6d002ffde3/ss_a9874181d525bcd03ce332e04866bb6d002ffde3.1920x1080.jpg?t=1785250839",
+        "source_sha256": "844f58fb10d228e382e631d24a42291f31bc698725845e952a3b37e6ac622808",
+        "path": "assets/games/fos-gameplay-2.webp",
+        "width": 1920,
+        "height": 1080,
+        "original_width": 1920,
+        "original_height": 1080,
+        "sha256": "2d49b8dce06d3fdc0b9ce34fe8e3b53a26ed4b97a19b36762cb632876435ef07",
+        "treatment": "aspect-preserving resize and WebP compression only"
+      },
+      {
+        "source_url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4820790/aed39abe9b9d91840ffaf3730f496ff8ecfc3c46/ss_aed39abe9b9d91840ffaf3730f496ff8ecfc3c46.1920x1080.jpg?t=1785250839",
+        "source_sha256": "60d95ee675211d373d9f1fdf9cfc5c77255bb73d7f91d56ce891ab09c7a7396a",
+        "path": "assets/games/fos-gameplay-3.webp",
+        "width": 1920,
+        "height": 1080,
+        "original_width": 1920,
+        "original_height": 1080,
+        "sha256": "bec68cdc4d37cea6adb98d7d7a96ed89206c00e8c5efb94eb0f42dc6bfe2ddd4",
+        "treatment": "aspect-preserving resize and WebP compression only"
+      }
+    ],
+    "store_url": "https://store.steampowered.com/app/4820790/",
+    "short_description": "Build and manage a real multi\u2011entity family office as you acquire properties, hire staff, structure trusts, and grow generational wealth through authentic financial systems.",
+    "coming_soon": false,
+    "retrieved_utc": "2026-09-15T16:42:49Z"
+  },
+  "mso": {
+    "appid": 5070740,
+    "name": "Main Street Operator",
+    "capsule": {
+      "source_url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5070740/c23ef556bd02f162d6fdb718a50aaed811498100/header.jpg?t=1789417247",
+      "source_sha256": "7e13fc93e84efbc2c0f631079a7848fcb24b051158a6072c87de3627f9f3a7c2",
+      "path": "assets/games/mso-capsule.webp",
+      "width": 460,
+      "height": 215,
+      "original_width": 460,
+      "original_height": 215,
+      "sha256": "b69133d27be7a53dc56b6b9803432856e2892dfd241c07a3137fccca1b1f0dc0",
+      "treatment": "aspect-preserving resize and WebP compression only"
+    },
+    "screenshots": [
+      {
+        "source_url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5070740/1f18214e98e6046b4430d00a629803f306975209/ss_1f18214e98e6046b4430d00a629803f306975209.1920x1080.jpg?t=1789417247",
+        "source_sha256": "e77e013b4c45a5b8788fd5e030f783a170bb2cb5f527d83878e79392f8ed1d1f",
+        "path": "assets/games/mso-gameplay-1.webp",
+        "width": 1728,
+        "height": 1080,
+        "original_width": 1728,
+        "original_height": 1080,
+        "sha256": "ec3d95a9cd0a7dc58bf03314e603d25b0f1b516b3a67fd51a8c90a8833d8096e",
+        "treatment": "aspect-preserving resize and WebP compression only"
+      },
+      {
+        "source_url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5070740/aed319a1142c4f45fa4b041ee132b88ebca84114/ss_aed319a1142c4f45fa4b041ee132b88ebca84114.1920x1080.jpg?t=1789417247",
+        "source_sha256": "b3aad4109366dc46d161dd047bf5777cdf8b409d8cd89e7f8a0fe750347da334",
+        "path": "assets/games/mso-gameplay-2.webp",
+        "width": 1728,
+        "height": 1080,
+        "original_width": 1728,
+        "original_height": 1080,
+        "sha256": "bf391f20bb75cd66e28f6b96666118b8e618b4360b50d4473490ee7a27491932",
+        "treatment": "aspect-preserving resize and WebP compression only"
+      },
+      {
+        "source_url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5070740/fd4d4097a11ff49dae2327fae4fd88a3319b428d/ss_fd4d4097a11ff49dae2327fae4fd88a3319b428d.1920x1080.jpg?t=1789417247",
+        "source_sha256": "28e994dbe488ebeb36300912838c841ab48ec9c2c2836543bc3845645ce30a46",
+        "path": "assets/games/mso-gameplay-3.webp",
+        "width": 1728,
+        "height": 1080,
+        "original_width": 1728,
+        "original_height": 1080,
+        "sha256": "159feaedb722b2cccbd1ce785e6ac0f9590caedd850efc03d47890349b0c328d",
+        "treatment": "aspect-preserving resize and WebP compression only"
+      }
+    ],
+    "store_url": "https://store.steampowered.com/app/5070740/",
+    "short_description": "Buy a tired neighborhood laundromat and turn it around. Walk the floor, clean and repair machines, manage prices and cash flow, modernize the store, win back customers, pay down the seller note, and decide when the business is finally worth keeping\u2014or selling.",
+    "coming_soon": true,
+    "retrieved_utc": "2026-09-15T16:42:52Z"
+  },
+  "dp": {
+    "appid": 5158570,
+    "name": "Dealer Principal: The Dealership Simulator",
+    "capsule": {
+      "source_url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5158570/2acbbf9c8fba56d3ec6bd5f0d3b8b5a96e752db6/header.jpg?t=1789417528",
+      "source_sha256": "afae3f2ce0000075d79282ea8bb40a93f0ad2fb89b2025d6796c152ad244bb11",
+      "path": "assets/games/dp-capsule.webp",
+      "width": 460,
+      "height": 215,
+      "original_width": 460,
+      "original_height": 215,
+      "sha256": "bb6045e2d0766fce668fd56871294d87f9946023e3d6eb88109d64a82d631fde",
+      "treatment": "aspect-preserving resize and WebP compression only"
+    },
+    "screenshots": [
+      {
+        "source_url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5158570/11ee4cda20fb868396daff543696f4a1f202f697/ss_11ee4cda20fb868396daff543696f4a1f202f697.1920x1080.jpg?t=1789417528",
+        "source_sha256": "a82bb84ea12affbe6a950305d3bcdea5152f212b59c1900dd2f48cf61ac1bc7a",
+        "path": "assets/games/dp-gameplay-1.webp",
+        "width": 1920,
+        "height": 1080,
+        "original_width": 1920,
+        "original_height": 1080,
+        "sha256": "8363c4242ea9a9f2269c79036e3866e54c2d70e6780ea1e73aa4f64d7055ac04",
+        "treatment": "aspect-preserving resize and WebP compression only"
+      },
+      {
+        "source_url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5158570/c38d5896997e640f322fa52a5d88f9dc2f44bf63/ss_c38d5896997e640f322fa52a5d88f9dc2f44bf63.1920x1080.jpg?t=1789417528",
+        "source_sha256": "d4d85669ba587f3a3a329491033810815d2ee5896d92f0a8e6e17cf8a75e3bdf",
+        "path": "assets/games/dp-gameplay-2.webp",
+        "width": 1920,
+        "height": 1080,
+        "original_width": 1920,
+        "original_height": 1080,
+        "sha256": "e588e2d94db0943d0650ee7e80c484163a9d04942a2a7cbe4c8a56cbe24b9b4c",
+        "treatment": "aspect-preserving resize and WebP compression only"
+      },
+      {
+        "source_url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5158570/0722c4bd627c415b08be5a13a79469c5f28a19a0/ss_0722c4bd627c415b08be5a13a79469c5f28a19a0.1920x1080.jpg?t=1789417528",
+        "source_sha256": "b3461f946db58343786d57bd9a6f6aedece9ac97f4ad2f1834ebdda0eb5c88c2",
+        "path": "assets/games/dp-gameplay-3.webp",
+        "width": 1920,
+        "height": 1080,
+        "original_width": 1920,
+        "original_height": 1080,
+        "sha256": "c04b6d50863733f4b89e808861a79b1dada59facda58716fbf8e7a3856fb9cdb",
+        "treatment": "aspect-preserving resize and WebP compression only"
+      }
+    ],
+    "store_url": "https://store.steampowered.com/app/5158570/",
+    "short_description": "Run a franchised car dealership from the inside. Buy and price inventory, desk deals, manage F&amp;I, service, parts, staff, OEM relationships, cash flow, and customer satisfaction in a realistic first-person dealership management simulation.",
+    "coming_soon": true,
+    "retrieved_utc": "2026-09-15T16:42:56Z"
+  }
+}
