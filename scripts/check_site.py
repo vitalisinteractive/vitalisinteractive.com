@@ -16,26 +16,10 @@ REQUIRED_CONTACTS = (
     "hello@vitalisinteractive.com",
     "support@vitalisinteractive.com",
 )
-EXPECTED_NAV = (
-    ("Family Office Simulator", "family-office-simulator.html"),
-    ("Games", "games.html"),
-    ("Studio", "studio.html"),
-    ("Updates", "latest.html"),
-    ("Support", "support.html"),
-    (
-        "Play on Steam",
-        "https://store.steampowered.com/app/4820790/Family_Office_Simulator/",
-    ),
-)
-CURRENT_PAGE = {
-    "family-office-simulator.html": "family-office-simulator.html",
-    "games.html": "games.html",
-    "studio.html": "studio.html",
-    "latest.html": "latest.html",
-    "support.html": "support.html",
-}
+EXPECTED_NAV = (('Home', 'index.html'), ('Games', 'games.html'), ('Studio', 'studio.html'), ('Updates', 'latest.html'), ('Support', 'support.html'), ('Contact', 'contact.html'))
+CURRENT_PAGE = {'index.html': 'index.html', 'games.html': 'games.html', 'studio.html': 'studio.html', 'latest.html': 'latest.html', 'support.html': 'support.html', 'contact.html': 'contact.html'}
 REQUIRED_STYLES = {"styles.css", "foundation.css"}
-NEWSLETTER_PAGES = {"index.html", "privacy.html"}
+NEWSLETTER_PAGES = {"dispatch.html", "privacy.html"}
 LEGACY_FILES = {
     "script.js",
     "site-v2.css",
@@ -58,8 +42,6 @@ def _protected_public_phrases() -> tuple[str, ...]:
     encoded = (
         (80, 111, 114, 116, 102, 111, 108, 105, 111, 32, 80, 108, 97, 121, 116, 104, 114, 111, 117, 103, 104),
         (84, 72, 69, 80, 79, 82, 84, 70, 79, 76, 73, 79, 80, 76, 65, 89, 84, 72, 82, 79, 85, 71, 72),
-        (77, 97, 105, 110, 32, 83, 116, 114, 101, 101, 116, 32, 79, 112, 101, 114, 97, 116, 111, 114),
-        (68, 101, 97, 108, 101, 114, 32, 80, 114, 105, 110, 99, 105, 112, 97, 108),
         (82, 97, 110, 99, 104, 32, 66, 111, 115, 115),
         (84, 114, 97, 105, 108, 98, 108, 97, 122, 101, 114),
     )

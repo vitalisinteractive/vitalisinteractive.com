@@ -41,3 +41,15 @@ The validation workflow runs the site check on pushes and pull requests.
 ## Publication
 
 GitHub Pages serves the repository root from `main` at `vitalisinteractive.com`. A branch, local commit, or successful validation run is only a candidate: merging to `main` or publishing any change requires explicit approval. Do not change `CNAME`, DNS, or Pages settings as part of ordinary website edits.
+
+
+## September 2026 multipage refresh
+
+The current-art review uses neutral charcoal, off-white and restrained gold.
+`studio-refresh.css` supplies the new shared presentation.
+MSO and Dealer Principal now have their own pages. The full newsletter signup
+retains the existing Brevo embed on `dispatch.html`, linked from every footer.
+Home is a short introduction, not a single-page application.
+Artwork provenance is recorded in `assets/games/sources.json`. No generated
+substitute art from the early design mockups is used.
+Publication still requires owner approval; this task does not change hosting.

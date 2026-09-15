@@ -32,13 +32,15 @@
     setMenuState(false);
   }));
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') setMenuState(false);
+    if (event.key === 'Escape' && nav?.classList.contains('open')) { setMenuState(false); menu?.focus(); }
   });
   document.addEventListener('click', event => {
     if (!menu || !nav || !nav.classList.contains('open')) return;
     if (menu.contains(event.target) || nav.contains(event.target)) return;
     setMenuState(false);
   });
+
+  window.matchMedia('(min-width: 901px)').addEventListener('change', event => { if (event.matches) setMenuState(false); });
 
   document.querySelectorAll('[data-year]').forEach(el => {
     el.textContent = new Date().getFullYear();
