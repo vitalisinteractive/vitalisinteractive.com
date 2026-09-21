@@ -1,0 +1,46 @@
+name: Read official Steam news for website
+on:
+  push:
+    branches: [verify/steam-news-2026-09-21]
+    paths: [.github/workflows/steam-news-review.yml]
+permissions:
+  contents: read
+jobs:
+  read-news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Read public news and live content without changing either
+        run: |
+          python - <<'PY'
+          import datetime, hashlib, json, pathlib, urllib.request
+          out = pathlib.Path('review-news'); out.mkdir()
+          report = {'checked_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'apps': {}}
+          for appid in (4820790, 5070740, 5158570):
+              url = f'https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid={appid}&count=100&maxlength=0&feeds=steam_community_announcements'
+              request = urllib.request.Request(url, headers={'User-Agent': 'VitalisWebsiteContentReview/1.0', 'Cache-Control': 'no-cache'})
+              with urllib.request.urlopen(request, timeout=40) as response:
+                  raw = response.read(8_000_001)
+              if len(raw) > 8_000_000:
+                  raise RuntimeError('Oversized news response')
+              data = json.loads(raw)['appnews']
+              if int(data['appid']) != appid:
+                  raise RuntimeError('Wrong app identity')
+              (out / f'{appid}.json').write_bytes(raw)
+              items = data.get('newsitems', [])
+              report['apps'][str(appid)] = {'url': url, 'count': data.get('count'), 'retrieved': len(items), 'sha256': hashlib.sha256(raw).hexdigest(), 'items': [{'gid': n['gid'], 'title': n['title'], 'url': n['url'], 'date_utc': datetime.datetime.fromtimestamp(n['date'], datetime.timezone.utc).isoformat(), 'feedname': n.get('feedname')} for n in items]}
+              print(json.dumps({'appid': appid, 'items': report['apps'][str(appid)]['items'][:12]}, ensure_ascii=False))
+          for name in ('index.html', 'latest.html', 'family-office-simulator.html'):
+              with urllib.request.urlopen('https://vitalisinteractive.com/' + name, timeout=30) as response:
+                  raw = response.read()
+              (out / ('live-' + name)).write_bytes(raw)
+          (out / 'summary.json').write_text(json.dumps(report, indent=2, ensure_ascii=False) + '\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: official-steam-news-2026-09-21
+          path: review-news/
+          retention-days: 14
