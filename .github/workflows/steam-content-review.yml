@@ -1,0 +1,107 @@
+name: Review Steam website content update
+on:
+  push:
+    branches: [verify/steam-news-2026-09-21]
+    paths: [.github/workflows/steam-content-review.yml]
+permissions:
+  contents: write
+concurrency:
+  group: steam-content-review-20260921
+  cancel-in-progress: false
+jobs:
+  review-content:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      BASE: 5a19ca75ea88b1db71ee88e8798e32662c5ca40b
+      TARGET: refs/heads/content/steam-updates-2026-09-21
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Confirm original live baseline and isolated target
+        run: |
+          test "$GITHUB_REF" = refs/heads/verify/steam-news-2026-09-21
+          test -z "$(git status --porcelain)"
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$BASE"
+          test "$(git ls-remote origin "$TARGET" | cut -f1)" = "$BASE"
+      - name: Recheck exact Steam source and apply content
+        run: |
+          python scripts/sync_steam_notes_20260921.py
+          python - <<'PY'
+          import hashlib, json, pathlib, subprocess
+          # Keep the existing route to the Updates page; no new in-page scroll behavior.
+          for name in ('index.html', 'family-office-simulator.html'):
+              path = pathlib.Path(name)
+              text = path.read_text()
+              text = text.replace('latest.html#update-2026-09-21-steam-achievements', 'latest.html')
+              path.write_text(text)
+          expected = {'index.html', 'family-office-simulator.html', 'latest.html', 'sitemap.xml'}
+          changed = set(subprocess.check_output(['git', 'diff', '--name-only'], text=True).splitlines())
+          assert changed == expected, changed
+          report_path = pathlib.Path('steam-review/content-verification.json')
+          report = json.loads(report_path.read_text())
+          for name in expected:
+              report['files'][name]['after_sha256'] = hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest()
+          report_path.write_text(json.dumps(report, indent=2) + '\n')
+          PY
+          python scripts/check_site.py
+          git diff --check
+      - name: Install isolated browser dependencies
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Test all twelve pages at six widths
+        run: python scripts/check_refresh_browser.py
+      - name: Check new entries, unchanged archive and exact publication scope
+        run: |
+          python - <<'PY'
+          import hashlib, json, pathlib, re, subprocess
+          from html.parser import HTMLParser
+          text = pathlib.Path('latest.html').read_text()
+          report = json.loads(pathlib.Path('steam-review/content-verification.json').read_text())
+          entries = re.findall(r'data-steam-gid="([0-9]+)"', text)
+          assert entries == [item['gid'] for item in report['announcements']]
+          assert len(entries) == len(set(entries)) == 6
+          assert text.count('datetime="2026-09-21"') == 2
+          assert text.count('datetime="2026-09-19"') == 2
+          for item in report['announcements']:
+              assert item['url'] in text
+          for name in ('index.html', 'family-office-simulator.html'):
+              page = pathlib.Path(name).read_text()
+              assert 'Latest from the studio · September 21, 2026' in page
+              assert 'FOS: Steam achievements &amp; save recovery.' in page
+              assert 'Latest from the studio · September 14' not in page
+          report['content_checks'] = 'PASS: six distinct source-linked announcements in publication order; both September 21 and both September 19 posts retained; featured updates current.'
+          pathlib.Path('steam-review/content-verification.json').write_text(json.dumps(report, indent=2) + '\n')
+          PY
+      - name: Create a four-file candidate on the content branch only
+        run: |
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$BASE"
+          test "$(git ls-remote origin "$TARGET" | cut -f1)" = "$BASE"
+          export GIT_INDEX_FILE="$RUNNER_TEMP/vitalis-content-$GITHUB_RUN_ID.index"
+          test ! -e "$GIT_INDEX_FILE"
+          git read-tree "$BASE"
+          git add -- index.html family-office-simulator.html latest.html sitemap.xml
+          git diff --cached "$BASE" --check
+          TREE=$(git write-tree)
+          git config user.name 'Vitalis website build'
+          git config user.email 'noreply@vitalisinteractive.com'
+          CANDIDATE=$(printf 'content: publish September 18–21 FOS Steam update summaries\n\nSix official Steam announcements; existing design, artwork and all other pages unchanged.\n' | git commit-tree "$TREE" -p "$BASE")
+          test "$(git diff-tree --no-commit-id --name-only -r "$CANDIDATE" | wc -l)" -eq 4
+          git push origin "$CANDIDATE:$TARGET"
+          printf '{"candidate":"%s","tree":"%s","base":"%s"}\n' "$CANDIDATE" "$TREE" "$BASE" > steam-review/candidate.json
+          echo "Candidate $CANDIDATE; tree $TREE; only four public files changed." >> "$GITHUB_STEP_SUMMARY"
+      - name: Preserve browser and source verification
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: steam-content-review-2026-09-21
+          retention-days: 14
+          path: |
+            steam-review/
+            review/website-multipage-03/
+            index.html
+            family-office-simulator.html
+            latest.html
+            sitemap.xml
