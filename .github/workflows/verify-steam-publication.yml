@@ -1,0 +1,123 @@
+name: Verify live Steam content publication
+on:
+  push:
+    branches: [verify/steam-news-2026-09-21]
+    paths: [.github/workflows/verify-steam-publication.yml]
+permissions:
+  contents: read
+jobs:
+  verify-live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: fc0752e83981fb2f5622fd067e2cd74d8a4d2258
+          persist-credentials: false
+      - name: Compare public pages and assets with the published commit
+        run: |
+          python - <<'PY'
+          import datetime, hashlib, json, pathlib, time, urllib.parse, urllib.request
+          from html.parser import HTMLParser
+          root = pathlib.Path('.').resolve(); out = root / 'live-steam-verification'; out.mkdir()
+          paths = {p.name for p in root.glob('*.html')} | {'sitemap.xml', 'site.webmanifest', 'site.js'}
+          class Parser(HTMLParser):
+              def handle_starttag(self, tag, attrs):
+                  attrs = dict(attrs)
+                  for field in ('src', 'href'):
+                      url = urllib.parse.urlsplit(attrs.get(field, ''))
+                      if url.scheme or url.netloc or not url.path:
+                          continue
+                      path = url.path.lstrip('/')
+                      if (root / path).is_file() and root in (root / path).resolve().parents:
+                          paths.add(path)
+          for page in root.glob('*.html'):
+              Parser().feed(page.read_text())
+          records = []
+          for path in sorted(paths):
+              expected = hashlib.sha256((root / path).read_bytes()).hexdigest()
+              for attempt in range(6):
+                  url = 'https://vitalisinteractive.com/' + path
+                  request = urllib.request.Request(url, headers={'User-Agent': 'VitalisPublicationVerification/1.0', 'Cache-Control': 'no-cache'})
+                  with urllib.request.urlopen(request, timeout=25) as response:
+                      raw = response.read()
+                      status = response.status
+                  actual = hashlib.sha256(raw).hexdigest()
+                  if actual == expected:
+                      break
+                  time.sleep(5)
+              records.append({'path': path, 'status': status, 'match': actual == expected, 'sha256': actual, 'attempts': attempt + 1})
+          gids = ['1844115010502605','1844115010501448','1844115010498955','1844115010497982','1844115010497633','1844115010495982']
+          links = []
+          for gid in gids:
+              url = 'https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/' + gid
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'VitalisPublicationVerification/1.0'}), timeout=20) as response:
+                      links.append({'gid': gid, 'source_url': url, 'status': response.status, 'destination': response.geturl()})
+              except Exception as exc:
+                  links.append({'gid': gid, 'source_url': url, 'error': str(exc)})
+          report = {'release': 'fc0752e83981fb2f5622fd067e2cd74d8a4d2258', 'checked_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'files': records, 'steam_links': links}
+          (out / 'https-results.json').write_text(json.dumps(report, indent=2) + '\n')
+          print(json.dumps(report, indent=2))
+          assert all(r['match'] for r in records), 'Live content does not match the released files'
+          PY
+      - name: Install isolated browser dependencies
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Browser check live pages at desktop and mobile widths
+        run: |
+          python - <<'PY'
+          import datetime, json, pathlib
+          from playwright.sync_api import sync_playwright
+          root = pathlib.Path('.'); out = root / 'live-steam-verification'
+          checks = []
+          def check(name, passed):
+              checks.append({'name': name, 'pass': bool(passed)})
+          with sync_playwright() as p:
+              browser = p.chromium.launch()
+              context = browser.new_context(reduced_motion='reduce')
+              context.route('https://tracker.metricool.com/**', lambda r: r.fulfill(status=200, content_type='application/javascript', body='window.beTracker={t:function(){}};'))
+              context.route('https://*.sibforms.com/**', lambda r: r.fulfill(status=200, content_type='text/html', body='<html><body>Existing newsletter endpoint preserved. Submissions disabled in verification.</body></html>'))
+              page = context.new_page()
+              for width in (390, 1440):
+                  page.set_viewport_size({'width': width, 'height': 950})
+                  for name in sorted(p.name for p in root.glob('*.html')):
+                      response = page.goto('https://vitalisinteractive.com/' + name, wait_until='networkidle')
+                      page.evaluate('async () => { for (const i of document.images) { i.loading="eager"; try { await i.decode(); } catch {} } }')
+                      label = f'{name} @ {width}'
+                      check(label + ' HTTP', response.status == 200)
+                      check(label + ' approved design', page.locator('body[data-refresh="03"]').count() == 1)
+                      check(label + ' heading', page.locator('main h1').count() == 1)
+                      check(label + ' no overflow', page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'))
+                      check(label + ' images', page.evaluate('Array.from(document.images).every(i => i.complete && i.naturalWidth > 0)'))
+                      if name in ('index.html', 'family-office-simulator.html'):
+                          check(label + ' latest release', page.locator('main').get_by_text('FOS: Steam achievements & save recovery.', exact=True).count() == 1)
+                      if name == 'latest.html':
+                          check(label + ' six new entries', page.locator('article[data-steam-gid]').count() == 6)
+                          check(label + ' full archive', page.locator('main article').count() == 17)
+                          check(label + ' newest first', page.locator('main article').first.get_attribute('data-steam-gid') == '1844115010502605')
+                          check(label + ' individual Steam links', page.locator('article[data-steam-gid] a[href*="/news/externalpost/steam_community_announcements/"]').count() == 6)
+                      if name in ('index.html', 'latest.html', 'family-office-simulator.html'):
+                          page.screenshot(path=str(out / f'live-{name[:-5]}-{width}.png'), full_page=True)
+              page.set_viewport_size({'width':390,'height':844})
+              page.goto('https://vitalisinteractive.com/', wait_until='networkidle')
+              button = page.locator('[data-menu]'); button.click()
+              check('mobile menu opens', button.get_attribute('aria-expanded') == 'true')
+              page.locator('[data-nav]').get_by_role('link', name='Updates', exact=True).click()
+              check('Updates is a separate page', page.url.endswith('/latest.html'))
+              page.locator('[data-menu]').click(); page.keyboard.press('Escape')
+              check('Escape closes menu', page.locator('[data-menu]').get_attribute('aria-expanded') == 'false')
+              browser.close()
+          report = {'checked_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'passed': sum(c['pass'] for c in checks), 'total': len(checks), 'checks': checks, 'limits': 'External analytics and newsletter submissions stubbed. No purchase or wishlist changes.'}
+          (out / 'browser-results.json').write_text(json.dumps(report, indent=2) + '\n')
+          print(f"Live browser checks: {report['passed']}/{report['total']}")
+          assert all(c['pass'] for c in checks), 'Live browser check failed'
+          PY
+      - name: Preserve live publication evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-steam-publication-2026-09-21
+          path: live-steam-verification/
+          retention-days: 30
