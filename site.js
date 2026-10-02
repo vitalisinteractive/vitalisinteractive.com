@@ -18,6 +18,16 @@
     document.head.appendChild(metricoolScript);
   }
 
+  const saleNow = Date.now();
+  document.querySelectorAll('[data-sale-banner]').forEach(banner => {
+    const saleEnds = Date.parse(banner.dataset.saleEnds || '');
+    if (Number.isFinite(saleEnds) && saleNow < saleEnds) {
+      banner.hidden = false;
+    } else {
+      banner.remove();
+    }
+  });
+
   const menu = document.querySelector('[data-menu]');
   const nav = document.querySelector('[data-nav]');
   const setMenuState = open => {
