@@ -53,3 +53,24 @@ Home is a short introduction, not a single-page application.
 Artwork provenance is recorded in `assets/games/sources.json`. No generated
 substitute art from the early design mockups is used.
 Publication still requires owner approval; this task does not change hosting.
+
+
+## Rebuild policy
+
+The current committed website files on `main` are authoritative.
+
+`scripts/build_website_refresh.py` was a one-shot migration tool for the
+September 2026 multipage redesign and is intentionally retired. It must not be
+used to regenerate the current site because its historical baseline predates
+later content and design decisions.
+
+For ordinary website work:
+1. branch from current `main`;
+2. edit the current files;
+3. run `python scripts/check_site.py` and `git diff --check`;
+4. browser-test layout or interaction changes;
+5. merge only after review/owner approval.
+
+Any future generator must be designed against the current site and prove that
+it preserves existing update history, PRODUCT.md, DESIGN.md, legal/support
+content, analytics, newsletter integration, and source provenance.
