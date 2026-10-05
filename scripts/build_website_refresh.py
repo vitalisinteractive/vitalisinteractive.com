@@ -28,11 +28,13 @@ LINKS = {
 NAMES = {'fos': 'Family Office Simulator', 'mso': 'Main Street Operator', 'dp': 'Dealer Principal'}
 NAV = [('Home', 'index.html'), ('Games', 'games.html'), ('Studio', 'studio.html'), ('Updates', 'latest.html'), ('Support', 'support.html'), ('Contact', 'contact.html')]
 UPDATES = [
- ('2026-09-14', 'September 14, 2026', 'Closing reliability, save durability & Marketplace', 'A correction for affected long-running saves at month close, stronger financial-state handling, clearer Marketplace listings, and calendar-accurate days on market. Existing saves remain supported.'),
- ('2026-09-09', 'September 9, 2026', 'AcrePilot closing authority fix', 'Corrects a case where older negotiation receipts could block a valid accepted acquisition. Existing saves and accepted deals are supported.'),
- ('2026-09-08', 'September 8, 2026', 'AcrePilot closing & financing follow-up', 'Corrects exchange-credit settlement reconciliation and a separate exact-cent balance issue that could prevent the financing screen from opening.'),
- ('2026-09-05', 'September 5, 2026', 'AcrePilot closing & mortgage lifecycle fix', 'Corrects closing and month-close failures involving legitimate mortgage lifecycle changes, older acquisition history, and checking balances with cents.'),
- ('2026-08-31', 'August 31, 2026', 'AcrePilot closing hotfix', 'Improves compatibility with older Banking and line-of-credit history, preserves valid LOC-funded purchases, and adds clearer closing explanations.'),
+ ('2026-10-03', 'October 3, 2026', 'Accounting, Property Sales & UI Polish', 'Cash Flow now classifies property-sale proceeds under Investing Activities and mortgage/refinance proceeds under Financing Activities. Property-sale and 1031 guidance is clearer, with focused readability and high-scale UI polish.'),
+ ('2026-10-02', 'October 2, 2026', 'Financing Minimums & NNN Clarity', 'Agency and CMBS post-acquisition financing now enforce modeled minimum loan sizes, while NNN guidance more precisely matches the mechanics actually simulated.'),
+ ('2026-10-01', 'October 1, 2026', 'Close Month Performance & Financing Integrity', 'Longer campaigns reuse validated mortgage and settlement state during Close Month, while financing copy and refinance minimum-loan rules now agree with the modeled mechanics.'),
+ ('2026-09-29', 'September 29, 2026', 'Save Durability & Exit Reliability', 'Save acknowledgement and recovery are stronger across save, quit, window-close, Return to Main Menu and supported reload paths; UI scale remains synchronized through reload.'),
+ ('2026-09-25', 'September 25, 2026', 'Property Management Renewals & Decision Reliability', 'DwellingDesk gained portfolio-wide lease-renewal visibility and stronger decision-completion handling for larger property operations.'),
+ ('2026-09-23', 'September 23, 2026', 'AcrePilot Performance, Navigation & Acquisition Economics', 'Long-running negotiation performance, AcrePilot navigation, multifamily/storage acquisition economics and large-inbox Mail navigation were improved.'),
+ ('2026-09-21', 'September 21, 2026', 'Steam Achievements & Save Recovery', '25 Steam achievements are live, with existing campaigns credited where the saved history proves the milestone, alongside tighter save-warning recovery.'),
 ]
 E = html.escape
 
@@ -92,7 +94,7 @@ def card(key: str, assets: dict, number: str) -> str:
     return f'''<article class="vi-game"><a class="vi-art-link" href="{PAGES[key]}" aria-label="Explore {NAMES[key]}">{image(assets[key]['capsule'], NAMES[key] + ' — official Steam capsule artwork')}</a><div class="vi-game-meta"><span>{number} / {label}</span><a href="{PAGES[key]}">Explore the game <span aria-hidden="true">→</span></a></div><h2><a href="{PAGES[key]}">{NAMES[key]}</a></h2><p>{short}</p>{external(LINKS[key], 'Play on Steam' if key == 'fos' else 'Wishlist on Steam', 'vi-inline-link')}</article>'''
 
 def latest_strip() -> str:
-    return '''<section class="vi-update-strip"><div class="vi-wrap vi-update-inner"><div><span class="vi-kicker">Latest from the studio · September 14, 2026</span><h2>FOS: closing reliability &amp; Marketplace improvements.</h2></div><a class="vi-inline-link" href="latest.html">Read the update <span aria-hidden="true">→</span></a></div></section>'''
+    return '''<section class="vi-update-strip"><div class="vi-wrap vi-update-inner"><div><span class="vi-kicker">Latest FOS update · October 3, 2026</span><h2>Accounting, property sales &amp; UI polish.</h2><p>Cleaner cash-flow classification, clearer property-sale and 1031 guidance, and a focused readability pass.</p></div><div><a class="vi-inline-link" href="latest.html">Recent updates <span aria-hidden="true">→</span></a><br><a class="vi-inline-link" href="https://steamcommunity.com/app/4820790/announcements/" target="_blank" rel="noopener noreferrer">All patch notes on Steam <span aria-hidden="true">↗</span></a></div></div></section>'''
 
 def homepage(assets: dict) -> str:
     shot = assets['fos']['screenshots'][0] if assets['fos']['screenshots'] else assets['fos']['capsule']
