@@ -59,3 +59,38 @@ Home is a short introduction, not a single-page application.
 Artwork provenance is recorded in `assets/games/sources.json`. No generated
 substitute art from the early design mockups is used.
 Publication still requires owner approval; this task does not change hosting.
+
+
+## Vitalis-wide design standard
+
+These principles apply across the public website and should inform game/UI work without forcing every product into the same visual identity.
+
+- Premium, modern, and deliberate rather than trendy for its own sake.
+- Simulation-first: design should help the player understand and operate a believable system.
+- Information-dense where the work demands it, but never spreadsheet-ugly.
+- Strong typography and hierarchy before decorative containers.
+- Every visual treatment must earn its place; avoid decoration for decoration's sake.
+- Restrained motion with an operational purpose.
+- Prefer real game imagery, real product state, and real evidence over abstract marketing art.
+- Avoid recognizable default AI/SaaS patterns: cards-inside-cards, gratuitous gradients, glow, glass panels, excessive pills, icon-tile grids, generic centered hero formulas, and repeated identical section scaffolds.
+- "No AI slop" is a quality bar: AI assistance is acceptable; generic, unsupported, or visibly templated output is not.
+
+### Product-specific identities
+
+- **Family Office Simulator:** institutional private-wealth office; credible finance/operations; restrained and established.
+- **Main Street Operator:** grounded Main Street small-business operations; practical, physical, and approachable.
+- **Dealer Principal:** polished modern U.S. automotive retail; operational rather than luxury-car advertising.
+- **Vitalis Control Room:** serious professional operations console; calm authority, not cyberpunk/hacker styling.
+- **Vitalis website:** premium simulation studio; games and real development evidence first, never an AI-startup landing page.
+
+## Impeccable pilot policy
+
+The website is the first controlled pilot for Impeccable-inspired design review.
+
+- Project-local only; no global installation.
+- Pin an exact reviewed version/commit before any executable installation.
+- Start with manual design/critique/audit commands; automatic hooks remain disabled.
+- Findings are advisory until reviewed; no tool may silently mutate unrelated files or bypass normal Git provenance.
+- Installation/tooling changes belong in their own reviewable commit.
+- Codex and Claude review isolation must remain intact.
+- Release/test/source identity remains authoritative regardless of design-tool output.
