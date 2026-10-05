@@ -9,3 +9,6 @@ This is the `vitalisinteractive/vitalisinteractive.com` multipage static website
 - Preserve the single Metricool loader and the Brevo embed unless a task explicitly authorizes those systems.
 - Validate with `python scripts/check_site.py` and `git diff --check`. Browser-check changed pages through a local HTTP server when layout or interaction changes.
 - Treat a dirty worktree, unexpected branch, missing file, or remote mismatch as a stop condition. Never clean, reset, overwrite, merge, push, deploy, publish, or reveal a project without explicit approval.
+
+- `scripts/build_website_refresh.py` is a retired one-shot migration script. Do not run or revive it for current site work.
+- Current files on `main` are authoritative. Any new generator must preserve current update history, PRODUCT.md, DESIGN.md, legal/support content, analytics/newsletter integrations, and exact provenance.
