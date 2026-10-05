@@ -27,7 +27,7 @@ LEGACY_FILES = {
     "site-v4.css",
     "hero-v5.css",
 }
-ACTIVE_DOCUMENTS = ("README.md", "DESIGN.md", "AGENTS.md")
+ACTIVE_DOCUMENTS = ("README.md", "DESIGN.md", "PRODUCT.md", "AGENTS.md")
 OLD_PUBLIC_EMAIL = "vitalisinteractive@gmail.com"
 TRACKER_URL = "https://tracker.metricool.com/resources/be.js"
 TRACKER_HASH = "f0e9f7ba2d868aa7d04d28c28366f0ec"
@@ -241,6 +241,28 @@ def main() -> int:
     ).casefold()
     if OLD_PUBLIC_EMAIL in active_text:
         errors.append("Active documentation contains the retired public email address.")
+
+    design_text = (ROOT / "DESIGN.md").read_text(encoding="utf-8") if (ROOT / "DESIGN.md").exists() else ""
+    for required_heading in (
+        "## Vitalis-wide design standard",
+        "## Impeccable pilot policy",
+    ):
+        if required_heading not in design_text:
+            errors.append(f"DESIGN.md is missing protected current guidance: {required_heading}")
+
+    product_text = (ROOT / "PRODUCT.md").read_text(encoding="utf-8") if (ROOT / "PRODUCT.md").exists() else ""
+    if "Steam is the canonical source for complete Family Office Simulator patch notes." not in product_text:
+        errors.append("PRODUCT.md is missing the current FOS update-authority rule.")
+
+    latest_path = ROOT / "latest.html"
+    latest_text = latest_path.read_text(encoding="utf-8") if latest_path.exists() else ""
+    for protected_marker in (
+        'id="update-2026-10-03-accounting-property-sales-ui"',
+        'datetime="2026-07-28"',
+        "Steam remains the canonical feed for every patch and hotfix.",
+    ):
+        if protected_marker not in latest_text:
+            errors.append(f"latest.html is missing protected update history/context: {protected_marker}")
     for legacy in LEGACY_FILES:
         if legacy.casefold() in active_text:
             errors.append(f"Active documentation references deleted legacy file {legacy}.")
