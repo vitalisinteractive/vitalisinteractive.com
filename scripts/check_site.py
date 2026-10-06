@@ -257,7 +257,7 @@ def main() -> int:
     latest_path = ROOT / "latest.html"
     latest_text = latest_path.read_text(encoding="utf-8") if latest_path.exists() else ""
     for protected_marker in (
-        'id="update-2026-10-03-accounting-property-sales-ui"',
+        'id="update-2026-10-05-staffing-mortgages-operations"',
         'datetime="2026-07-28"',
         "Steam remains the canonical feed for every patch and hotfix.",
     ):
