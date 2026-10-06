@@ -254,6 +254,16 @@ def main() -> int:
     if "Steam is the canonical source for complete Family Office Simulator patch notes." not in product_text:
         errors.append("PRODUCT.md is missing the current FOS update-authority rule.")
 
+    mso_path = ROOT / "main-street-operator.html"
+    mso_text = mso_path.read_text(encoding="utf-8") if mso_path.exists() else ""
+    for protected_marker in (
+        "Demo available now · Full game coming soon",
+        "Play the Demo on Steam",
+        "Demo live now",
+    ):
+        if protected_marker not in mso_text:
+            errors.append(f"MSO demo availability markers are missing: {protected_marker}")
+
     latest_path = ROOT / "latest.html"
     latest_text = latest_path.read_text(encoding="utf-8") if latest_path.exists() else ""
     for protected_marker in (
