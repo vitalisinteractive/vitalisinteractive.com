@@ -1,0 +1,118 @@
+name: MSO current Steam art refresh
+
+on:
+  push:
+    branches: [website/mso-current-steam-art-01]
+    paths:
+      - .github/workflows/mso-current-steam-art-refresh.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mso-current-steam-art-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: website/mso-current-steam-art-01
+          fetch-depth: 0
+
+      - name: Verify isolated refresh branch
+        run: |
+          test "$GITHUB_REF" = "refs/heads/website/mso-current-steam-art-01"
+          test -z "$(git status --porcelain)"
+
+      - name: Install image decoder
+        run: python -m pip install Pillow==11.3.0
+
+      - name: Fetch current official MSO Steam header
+        shell: bash
+        run: |
+          python - <<'PY'
+          import hashlib, io, json, time
+          from pathlib import Path
+          from urllib.request import Request, urlopen
+          from urllib.parse import urlparse
+          from PIL import Image
+
+          root = Path.cwd()
+          appid = 5070740
+          expected = "Main Street Operator"
+          ua = {"User-Agent": "VitalisWebsiteAssetRefresh/1.0"}
+
+          def get(url):
+              host = urlparse(url).hostname or ""
+              if not (host == "store.steampowered.com" or host.endswith(".steamstatic.com")):
+                  raise RuntimeError(f"unapproved host: {host}")
+              with urlopen(Request(url, headers=ua), timeout=30) as r:
+                  final = urlparse(r.geturl()).hostname or ""
+                  if not (final == "store.steampowered.com" or final.endswith(".steamstatic.com")):
+                      raise RuntimeError(f"unapproved redirect: {final}")
+                  return r.read()
+
+          api = f"https://store.steampowered.com/api/appdetails?appids={appid}&cc=us&l=english"
+          payload = json.loads(get(api))
+          result = payload.get(str(appid), {})
+          if not result.get("success"):
+              raise RuntimeError("Steam appdetails did not return a successful result")
+          data = result["data"]
+          if expected.casefold() not in data.get("name","").casefold():
+              raise RuntimeError("Steam app identity mismatch")
+
+          url = data.get("header_image")
+          if not url or f"/{appid}/" not in url:
+              raise RuntimeError("No verified current Steam header image was returned")
+
+          raw = get(url)
+          img = Image.open(io.BytesIO(raw))
+          img.load()
+          if img.width < 460 or img.height < 215:
+              raise RuntimeError(f"Unexpected header dimensions: {img.size}")
+
+          img = img.convert("RGB")
+          target = root / "assets/games/mso-capsule.webp"
+          img.save(target, "WEBP", quality=94, method=6)
+
+          sources_path = root / "assets/games/sources.json"
+          sources = json.loads(sources_path.read_text(encoding="utf-8"))
+          old = sources["mso"]["capsule"]
+          sources["mso"]["capsule"] = {
+              "source_url": url,
+              "source_sha256": hashlib.sha256(raw).hexdigest(),
+              "path": "assets/games/mso-capsule.webp",
+              "width": img.width,
+              "height": img.height,
+              "original_width": img.width,
+              "original_height": img.height,
+              "sha256": hashlib.sha256(target.read_bytes()).hexdigest(),
+              "treatment": "WebP compression only; no crop, retouch, recolor, or generated pixels"
+          }
+          sources["mso"]["retrieved_utc"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+          sources_path.write_text(json.dumps(sources, indent=2) + "\n", encoding="utf-8")
+
+          print("OLD SOURCE:", old.get("source_url"))
+          print("NEW SOURCE:", url)
+          print("OLD SHA:", old.get("source_sha256"))
+          print("NEW SHA:", sources["mso"]["capsule"]["source_sha256"])
+          print("DIMENSIONS:", img.size)
+          PY
+
+      - name: Preserve refreshed MSO art on review branch
+        run: |
+          REMOTE_HEAD=$(git ls-remote origin "$GITHUB_REF" | cut -f1)
+          test "$REMOTE_HEAD" = "$GITHUB_SHA" || { echo "Branch advanced; refusing to overwrite concurrent work."; exit 1; }
+          git add -- assets/games/mso-capsule.webp assets/games/sources.json
+          if git diff --cached --quiet; then
+            echo "Steam header is already current; no asset commit required."
+          else
+            git config user.name "Vitalis website build"
+            git config user.email "noreply@vitalisinteractive.com"
+            git commit -m "art: refresh MSO website capsule from current Steam header"
+            git push origin "HEAD:$GITHUB_REF"
+          fi
