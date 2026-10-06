@@ -57,15 +57,15 @@
     "appid": 5070740,
     "name": "Main Street Operator",
     "capsule": {
-      "source_url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5070740/c23ef556bd02f162d6fdb718a50aaed811498100/header.jpg?t=1789417247",
-      "source_sha256": "7e13fc93e84efbc2c0f631079a7848fcb24b051158a6072c87de3627f9f3a7c2",
+      "source_url": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/5070740/0957d22e776be22ff6950e0ef127165b4056262c/header.jpg?t=1791296664",
+      "source_sha256": "add5dbf87ce6d22a83eb09f17c8e80425a288dab3624cb77fe6799be7d0efff0",
       "path": "assets/games/mso-capsule.webp",
       "width": 460,
       "height": 215,
       "original_width": 460,
       "original_height": 215,
-      "sha256": "b69133d27be7a53dc56b6b9803432856e2892dfd241c07a3137fccca1b1f0dc0",
-      "treatment": "aspect-preserving resize and WebP compression only"
+      "sha256": "09472e2ea497b41e39f8220be367a42ac40f22450c73416aca001ed7958a0fc7",
+      "treatment": "WebP compression only; no crop, retouch, recolor, or generated pixels"
     },
     "screenshots": [
       {
@@ -105,7 +105,7 @@
     "store_url": "https://store.steampowered.com/app/5070740/",
     "short_description": "Buy a tired neighborhood laundromat and turn it around. Walk the floor, clean and repair machines, manage prices and cash flow, modernize the store, win back customers, pay down the seller note, and decide when the business is finally worth keeping\u2014or selling.",
     "coming_soon": true,
-    "retrieved_utc": "2026-09-15T16:42:52Z"
+    "retrieved_utc": "2026-10-06T16:06:49Z"
   },
   "dp": {
     "appid": 5158570,
