@@ -1,0 +1,118 @@
+name: October 19 website review
+on:
+  push:
+    branches: [verify/site-nextfest-fos-20261019]
+    paths: [.github/workflows/verify-oct19-site.yml]
+permissions:
+  contents: read
+jobs:
+  browser-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          clean: false
+      - name: Confirm immutable candidate and verify no production writes
+        shell: bash
+        run: |
+          test "$GITHUB_REF" = "refs/heads/verify/site-nextfest-fos-20261019"
+          test "$(git rev-parse HEAD^)" = "4077f898a567be72cdc1383af2a6e43b9d3ff75e"
+          test -z "$(git status --porcelain)"
+          git diff --check c2dbb6f68018a42c05b2b1d7e3e383feb4d9ff68 HEAD
+          python scripts/check_site.py
+          git diff c2dbb6f68018a42c05b2b1d7e3e383feb4d9ff68 4077f898a567be72cdc1383af2a6e43b9d3ff75e --name-only | sort > /tmp/actual-files
+          printf '%s\n' contact.html dealer-principal.html family-office-simulator.html games.html index.html latest.html main-street-operator.html scripts/check_site.py sitemap.xml studio.html support.html | sort > /tmp/expected-files
+          diff -u /tmp/expected-files /tmp/actual-files
+      - name: Install isolated Chromium
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Exercise pages and capture screenshots
+        shell: bash
+        run: |
+          python - <<'PY'
+          import functools, hashlib, http.server, json, threading
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          root = Path.cwd()
+          out = root / 'review-oct19'
+          out.mkdir(exist_ok=True)
+          pages = sorted(p.name for p in root.glob('*.html'))
+          widths = (320,390,768,1024,1440,1920)
+          server = http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(http.server.SimpleHTTPRequestHandler,directory=str(root)))
+          threading.Thread(target=server.serve_forever,daemon=True).start()
+          base = 'http://127.0.0.1:' + str(server.server_port) + '/'
+          checks, failures = [], []
+          def ck(label, ok, detail=''):
+            rec={'test':label,'pass':bool(ok)}
+            if detail:rec['detail']=detail
+            checks.append(rec)
+            if not ok:failures.append(rec)
+          with sync_playwright() as p:
+            browser=p.chromium.launch()
+            ctx=browser.new_context(reduced_motion='reduce',device_scale_factor=1)
+            ctx.route('https://tracker.metricool.com/**', lambda r:r.fulfill(status=200,content_type='application/javascript',body='window.beTracker={t:function(){}};'))
+            ctx.route('https://*.sibforms.com/**', lambda r:r.fulfill(status=200,content_type='text/html',body='<html><body>Newsletter test stub</body></html>'))
+            page=ctx.new_page()
+            for w in widths:
+              page.set_viewport_size({'width':w,'height':900})
+              for name in pages:
+                errs=[]
+                page.on('pageerror',lambda err:None)
+                response=page.goto(base+name,wait_until='domcontentloaded')
+                page.evaluate('''async () => {await Promise.all(Array.from(document.images).map(async i => {i.loading='eager';try {await i.decode()} catch(e) {}}))}''')
+                tag=name+' @ '+str(w)+'px'
+                ck(tag+' HTTP 200',response.status==200)
+                ck(tag+' exactly one h1',page.locator('main h1').count()==1)
+                ck(tag+' no horizontal overflow',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
+                missing=page.evaluate('Array.from(document.images).filter(i=>!i.complete || i.naturalWidth==0).map(i=>i.getAttribute("src"))')
+                ck(tag+' images loaded',not missing,','.join(missing) if missing else '')
+                ck(tag+' six navigation links',page.locator('nav[aria-label="Primary navigation"] a').count()==6)
+                if name in ('index.html','games.html','family-office-simulator.html','main-street-operator.html','dealer-principal.html','latest.html','support.html','studio.html') and w in (390,1440):
+                  path=out/(name.replace('.html','')+'-'+str(w)+'.png')
+                  page.screenshot(path=str(path),full_page=True)
+            page.set_viewport_size({'width':390,'height':844})
+            page.goto(base+'index.html')
+            menu=page.locator('[data-menu]')
+            nav=page.locator('[data-nav]')
+            ck('Mobile menu starts collapsed',menu.get_attribute('aria-expanded')=='false')
+            menu.click()
+            ck('Mobile menu opens',menu.get_attribute('aria-expanded')=='true' and nav.is_visible())
+            nav.locator('a').first.focus()
+            page.keyboard.press('Escape')
+            ck('Escape closes menu',menu.get_attribute('aria-expanded')=='false')
+            ck('Escape returns menu focus',menu.evaluate('(el)=>el===document.activeElement'))
+            page.goto(base+'dealer-principal.html')
+            ck('DP free demo present',page.get_by_role('link',name='Play the free demo on Steam').count()>=1)
+            page.goto(base+'main-street-operator.html')
+            ck('MSO free demo present',page.get_by_role('link',name='Play the free demo on Steam').count()>=1)
+            ck('No outdated Next Fest phrase','before Next Fest' not in page.content())
+            page.goto(base+'family-office-simulator.html')
+            ck('FOS Oct19 release featured','October 19, 2026' in page.content())
+            page.goto(base+'latest.html')
+            ck('Current FOS news present',page.locator('#update-2026-10-19-fos').count()==1)
+            ck('Next Fest item present',page.locator('#update-2026-10-19-next-fest').count()==1)
+            dates=page.locator('.update-list time[datetime]').evaluate_all('(xs)=>xs.map(x=>x.getAttribute("datetime"))')
+            ck('News is reverse chronological',dates==sorted(dates,reverse=True))
+            page.goto(base+'support.html')
+            ck('Support all three games',all(page.locator(f'a[href="https://steamcommunity.com/app/{id}/discussions/"]').count()>=1 for id in (4820790,5070740,5158570)))
+            page.goto(base+'dispatch.html')
+            ck('Existing Brevo embed stays',page.locator('iframe[src^="https://fdca8306.sibforms.com/"]').count()==1)
+            ck('No expired FOS sale on homepage', '20% off' not in (root/'index.html').read_text())
+            ck('No expired FOS sale on FOS page', '20% off' not in (root/'family-office-simulator.html').read_text())
+            browser.close()
+          server.shutdown()
+          result={'status':'PASS' if not failures else 'FAIL','passed':len(checks)-len(failures),'total':len(checks),'failures':failures,'screenshots':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in out.glob('*.png')},'limits':'Local browser test; analytics and newsletter are stubbed, no public interactions made.'}
+          (out/'results.json').write_text(json.dumps(result,indent=2)+'\n')
+          print(json.dumps({k:v for k,v in result.items() if k!='screenshots'},indent=2))
+          if failures:raise SystemExit(1)
+          PY
+      - name: Save visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vitalis-site-oct19-browser-review
+          path: review-oct19/
+          retention-days: 14
