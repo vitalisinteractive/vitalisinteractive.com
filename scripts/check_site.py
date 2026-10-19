@@ -257,16 +257,28 @@ def main() -> int:
     mso_path = ROOT / "main-street-operator.html"
     mso_text = mso_path.read_text(encoding="utf-8") if mso_path.exists() else ""
     for protected_marker in (
-        "Demo available now · Full game coming soon",
-        "Play the Demo on Steam",
-        "Demo live now",
+        "Free demo available · Full game coming soon",
+        "Play the free demo on Steam",
+        "Steam Next Fest · October 19–26, 2026",
     ):
         if protected_marker not in mso_text:
             errors.append(f"MSO demo availability markers are missing: {protected_marker}")
 
+    dp_path = ROOT / "dealer-principal.html"
+    dp_text = dp_path.read_text(encoding="utf-8") if dp_path.exists() else ""
+    for protected_marker in (
+        "Free demo available · Full game coming soon",
+        "Play the free demo on Steam",
+        "Wishlist the full game",
+    ):
+        if protected_marker not in dp_text:
+            errors.append(f"DP public demo markers are missing: {protected_marker}")
+
     latest_path = ROOT / "latest.html"
     latest_text = latest_path.read_text(encoding="utf-8") if latest_path.exists() else ""
     for protected_marker in (
+        'id="update-2026-10-19-fos"',
+        'id="update-2026-10-19-next-fest"',
         'id="update-2026-10-05-staffing-mortgages-operations"',
         'datetime="2026-07-28"',
         "Steam remains the canonical feed for every patch and hotfix.",
