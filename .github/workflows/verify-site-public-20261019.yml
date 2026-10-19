@@ -1,0 +1,122 @@
+name: Verify October 19 live website
+on:
+  push:
+    branches: [verify/site-published-20261019]
+    paths: [.github/workflows/verify-site-public-20261019.yml]
+permissions:
+  contents: read
+jobs:
+  public-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          clean: false
+      - name: Match public files byte-for-byte to approved release
+        shell: bash
+        run: |
+          test "$GITHUB_REF" = "refs/heads/verify/site-published-20261019"
+          test "$(git rev-parse HEAD^)" = "3412e3c0a9f7d5f1c69bfdba5ef7b5f45299860d"
+          test -z "$(git status --porcelain)"
+          python scripts/check_site.py
+          python - <<'PY'
+          import hashlib, json, time, urllib.request
+          from pathlib import Path
+          root=Path.cwd()
+          paths=sorted(p.relative_to(root).as_posix() for p in root.glob('*.html'))
+          paths+=['site.js','styles.css','foundation.css','newsletter.css','studio-refresh.css','exact-logo-fix.css','sitemap.xml']
+          paths+=sorted(p.relative_to(root).as_posix() for p in (root/'assets/games').glob('*.webp'))
+          paths+=['assets/vitalis-master-exact-2026.webp']
+          report={'source_commit':'3412e3c0a9f7d5f1c69bfdba5ef7b5f45299860d','checked':[],'failures':[]}
+          for attempt in range(1,9):
+            failures=[]; passed=[]
+            for path in paths:
+              source=(root/path).read_bytes()
+              url='https://vitalisinteractive.com/'+path
+              try:
+                req=urllib.request.Request(url+'?site_review=20261019',headers={'User-Agent':'Vitalis-Website-Publication-Verification/1.0','Accept-Encoding':'identity'})
+                with urllib.request.urlopen(req,timeout=18) as response:
+                  live=response.read(15000000)
+                  status=response.status
+                ok=(status==200 and hashlib.sha256(source).digest()==hashlib.sha256(live).digest())
+                if not ok:failures.append({'path':path,'http':status,'expected':hashlib.sha256(source).hexdigest(),'actual':hashlib.sha256(live).hexdigest()})
+                else:passed.append(path)
+              except Exception as exc:
+                failures.append({'path':path,'error':str(exc)[:240]})
+            if not failures:
+              report.update({'status':'PASS','attempt':attempt,'checked':passed,'failures':[]})
+              break
+            report.update({'status':'FAIL','attempt':attempt,'checked':passed,'failures':failures})
+            if attempt<8:time.sleep(10)
+          folder=root/'review-live-oct19'
+          folder.mkdir(exist_ok=True)
+          (folder/'files.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
+          print('Live byte-identity:', report['status'],len(report['checked']),'/',len(paths),'attempt',report['attempt'])
+          if report['failures']:print(report['failures'][:8])
+          if report['status']!='PASS':raise SystemExit(1)
+          PY
+      - name: Install Chromium for direct public-site check
+        run: |
+          python -m pip install playwright==1.55.0
+          python -m playwright install --with-deps chromium
+      - name: Capture and test actual public desktop and mobile pages
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          root=Path.cwd()
+          out=root/'review-live-oct19'
+          pages=sorted(p.name for p in root.glob('*.html'))
+          failures=[];checks=[]
+          def ck(name,ok,detail=None):
+            checks.append({'name':name,'pass':bool(ok)})
+            if not ok:failures.append({'name':name,'detail':detail})
+          with sync_playwright() as p:
+            browser=p.chromium.launch()
+            ctx=browser.new_context(device_scale_factor=1,reduced_motion='reduce')
+            ctx.route('https://tracker.metricool.com/**',lambda r:r.fulfill(status=200,content_type='application/javascript',body='window.beTracker={t:function(){}};'))
+            ctx.route('https://*.sibforms.com/**',lambda r:r.fulfill(status=200,content_type='text/html',body='<html><body>Newsletter stub for read-only review.</body></html>'))
+            page=ctx.new_page()
+            for width in (390,1440):
+              page.set_viewport_size({'width':width,'height':900})
+              for name in pages:
+                url='https://vitalisinteractive.com/'+name+'?site_review=20261019'
+                response=page.goto(url,wait_until='domcontentloaded',timeout=25000)
+                page.evaluate('''async()=>await Promise.all(Array.from(document.images).map(async i=>{i.loading="eager";try{await i.decode()}catch(e){}}))''')
+                tag=name+' '+str(width)
+                ck(tag+' HTTP 200',response.status==200)
+                ck(tag+' one H1',page.locator('main h1').count()==1)
+                ck(tag+' no overflow',page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'))
+                missing=page.evaluate('Array.from(document.images).filter(i=>!i.complete||!i.naturalWidth).map(i=>i.src)')
+                ck(tag+' images loaded',not missing,missing)
+                if name in ('index.html','latest.html','dealer-principal.html','main-street-operator.html','support.html'):
+                  page.screenshot(path=str(out/(name.replace('.html','')+'-'+str(width)+'.png')),full_page=True)
+            page.set_viewport_size({'width':390,'height':844})
+            page.goto('https://vitalisinteractive.com/')
+            menu=page.locator('[data-menu]')
+            menu.click()
+            ck('Live menu opens',menu.get_attribute('aria-expanded')=='true')
+            page.keyboard.press('Escape')
+            ck('Live menu closes',menu.get_attribute('aria-expanded')=='false')
+            page.goto('https://vitalisinteractive.com/latest.html')
+            ck('Live Oct19 FOS news',page.locator('#update-2026-10-19-fos').count()==1)
+            ck('Live October Next Fest news',page.locator('#update-2026-10-19-next-fest').count()==1)
+            page.goto('https://vitalisinteractive.com/dealer-principal.html')
+            ck('Live DP free demo',page.get_by_role('link',name='Play the free demo on Steam').count()>=1)
+            browser.close()
+          report={'status':'PASS' if not failures else 'FAIL','total':len(checks),'passed':len(checks)-len(failures),'failures':failures,'note':'External newsletter and analytics scripts were stubbed; no subscription, purchase or wishlist action was performed.'}
+          (out/'browser.json').write_text(json.dumps(report,indent=2)+'\n')
+          print('Live browser:',report['status'],report['passed'],'/',report['total'])
+          if failures:print(failures[:10]);raise SystemExit(1)
+          PY
+      - name: Save live-site proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vitalis-live-oct19-verification
+          path: review-live-oct19/
+          retention-days: 14
