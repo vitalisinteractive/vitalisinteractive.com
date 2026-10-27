@@ -259,7 +259,7 @@ def main() -> int:
     for protected_marker in (
         "Free demo available · Full game coming soon",
         "Play the free demo on Steam",
-        "Steam Next Fest · October 19–26, 2026",
+        "Free demo available now",
     ):
         if protected_marker not in mso_text:
             errors.append(f"MSO demo availability markers are missing: {protected_marker}")
@@ -270,9 +270,19 @@ def main() -> int:
         "Free demo available · Full game coming soon",
         "Play the free demo on Steam",
         "Wishlist the full game",
+        "Free demo available now",
     ):
         if protected_marker not in dp_text:
             errors.append(f"DP public demo markers are missing: {protected_marker}")
+
+    home_text = (ROOT / "index.html").read_text(encoding="utf-8")
+    if "Free demos available now" not in home_text:
+        errors.append("Homepage is missing the evergreen free-demo heading.")
+
+    for page_name in ("index.html", "main-street-operator.html", "dealer-principal.html"):
+        page_text = (ROOT / page_name).read_text(encoding="utf-8")
+        if "Steam Next Fest" in page_text:
+            errors.append(f"{page_name}: expired event promotion remains on a live demo page")
 
     latest_path = ROOT / "latest.html"
     latest_text = latest_path.read_text(encoding="utf-8") if latest_path.exists() else ""
