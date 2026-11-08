@@ -7,7 +7,7 @@ This repository contains the multipage static website for `vitalisinteractive.co
 - `index.html` and the other root-level `.html` files contain the public pages and metadata.
 - `styles.css` contains the core palette, layout, components, and responsive rules.
 - `foundation.css` contains shared accessibility and resilient-layout refinements.
-- `newsletter.css` contains the Vitalis Dispatch embed and privacy-page styles.
+- `foundation.css` contains the shared accessibility and privacy-page styles. The former game-newsletter signup is retired.
 - `site.js` contains the mobile navigation, copyright year, and single Metricool loader.
 - `assets/` contains the site logo and related static media.
 - `sitemap.xml`, `robots.txt`, `site.webmanifest`, `CNAME`, and `.nojekyll` support search, browser, and GitHub Pages behavior.
@@ -47,8 +47,8 @@ GitHub Pages serves the repository root from `main` at `vitalisinteractive.com`.
 
 The current-art review uses neutral charcoal, off-white and restrained gold.
 `studio-refresh.css` supplies the new shared presentation.
-MSO and Dealer Principal now have their own pages. The full newsletter signup
-retains the existing Brevo embed on `dispatch.html`, linked from every footer.
+MSO and Dealer Principal now have their own pages. The former game newsletter is retired; `dispatch.html` is a noindex information page,
+not a live Brevo signup, and the footer links directly to Updates.
 Home is a short introduction, not a single-page application.
 Artwork provenance is recorded in `assets/games/sources.json`. No generated
 substitute art from the early design mockups is used.
@@ -73,4 +73,4 @@ For ordinary website work:
 
 Any future generator must be designed against the current site and prove that
 it preserves existing update history, PRODUCT.md, DESIGN.md, legal/support
-content, analytics, newsletter integration, and source provenance.
+content, analytics, historical newsletter records, and source provenance.

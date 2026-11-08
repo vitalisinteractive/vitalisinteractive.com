@@ -19,7 +19,6 @@ REQUIRED_CONTACTS = (
 EXPECTED_NAV = (('Home', 'index.html'), ('Games', 'games.html'), ('Studio', 'studio.html'), ('Updates', 'latest.html'), ('Support', 'support.html'), ('Contact', 'contact.html'))
 CURRENT_PAGE = {'index.html': 'index.html', 'games.html': 'games.html', 'studio.html': 'studio.html', 'latest.html': 'latest.html', 'support.html': 'support.html', 'contact.html': 'contact.html'}
 REQUIRED_STYLES = {"styles.css", "foundation.css"}
-NEWSLETTER_PAGES = {"dispatch.html", "privacy.html"}
 LEGACY_FILES = {
     "script.js",
     "site-v2.css",
@@ -210,8 +209,12 @@ def _page_errors(page: Path, text: str, parser: PageParser) -> list[str]:
     styles = set(parser.stylesheets)
     if not REQUIRED_STYLES.issubset(styles):
         errors.append(f"{page.name}: missing required active styles")
-    if page.name in NEWSLETTER_PAGES and "newsletter.css" not in styles:
-        errors.append(f"{page.name}: missing newsletter.css")
+    if "newsletter.css" in styles:
+        errors.append(f"{page.name}: retired newsletter stylesheet remains linked")
+    if 'href="dispatch.html"' in text and page.name != "dispatch.html":
+        errors.append(f"{page.name}: retired newsletter is still promoted")
+    if page.name == "dispatch.html" and ("sibforms.com" in text or "<iframe" in text):
+        errors.append("dispatch.html: retired signup embed remains active")
     if parser.scripts.count("site.js") != 1:
         errors.append(f"{page.name}: must load site.js exactly once")
 
