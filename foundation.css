@@ -524,3 +524,13 @@ a:focus-visible,button:focus-visible{outline-color:var(--brand-gold-bright)}
     animation-iteration-count:1!important
   }
 }
+
+/* Retained privacy layout after retirement of the email signup. */
+.privacy-content{max-width:840px}
+.privacy-content h2{margin:55px 0 14px;font-size:34px}
+.privacy-content h2:first-child{margin-top:0}
+.privacy-content p,.privacy-content li{color:#53656a;font-size:17px}
+.privacy-content ul{padding-left:22px}
+.privacy-content a{color:#8b6413;font-weight:800}
+.privacy-meta{margin-top:22px;color:#9aadb2;font-size:12px;text-transform:uppercase;letter-spacing:.1em}
+@media(max-width:760px){.privacy-content h2{font-size:30px}}
