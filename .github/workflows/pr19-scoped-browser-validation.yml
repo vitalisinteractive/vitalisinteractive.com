@@ -1,0 +1,76 @@
+name: Scoped browser validation for PR 19
+on:
+  push:
+    branches: [validation/website-pr19-browser]
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: 87cac922d2281850aad8bd54682a5f5d641fd242
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Confirm candidate identity and whitespace
+        run: |
+          test "$(git rev-parse HEAD)" = "87cac922d2281850aad8bd54682a5f5d641fd242"
+          git diff --check d645dd87eb15fea427cc06df8f73a3c975851ff7 HEAD
+          python3 scripts/check_site.py
+      - name: Install isolated browser driver
+        run: |
+          python3 -m pip install playwright==1.55.0
+          python3 -m playwright install --with-deps chromium
+      - name: Exercise changed pages
+        run: |
+          python3 - <<'PY'
+          import http.server, threading
+          from playwright.sync_api import sync_playwright
+          server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), http.server.SimpleHTTPRequestHandler)
+          threading.Thread(target=server.serve_forever, daemon=True).start()
+          base = f'http://127.0.0.1:{server.server_port}/'
+          total = 0
+          with sync_playwright() as p:
+              browser = p.chromium.launch()
+              context = browser.new_context(reduced_motion='reduce')
+              context.route('https://tracker.metricool.com/**', lambda r: r.fulfill(status=200, content_type='application/javascript', body='window.beTracker={t:function(){}};'))
+              page = context.new_page()
+              errors = []
+              page.on('pageerror', lambda error: errors.append(str(error)))
+              for width in (320, 390, 768, 1024, 1440, 1920):
+                  page.set_viewport_size({'width': width, 'height': 950})
+                  for name in ('index.html', 'studio.html', 'dispatch.html'):
+                      errors.clear()
+                      prefix = f'{name} at {width}'
+                      assert page.goto(base + name, wait_until='networkidle').status == 200, prefix
+                      assert page.locator('main h1').count() == 1, prefix
+                      assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'), prefix
+                      assert page.locator('main').inner_text().lower().find('halivro') == -1, prefix
+                      assert page.locator('a[href*="halivro.com"]').count() == 0, prefix
+                      missing = page.evaluate("""async () => { for(const i of document.images) { i.loading='eager'; try {await i.decode()} catch (_) {} } return Array.from(document.images).filter(i=>!i.complete || !i.naturalWidth).map(i=>i.src); }""")
+                      assert not missing, (prefix, missing)
+                      assert not errors, (prefix, errors)
+                      assert page.locator('nav[aria-label="Primary navigation"] a').count() == 6, prefix
+                      assert page.locator('footer a[href="privacy.html"]').count() == 1, prefix
+                      if name == 'index.html':
+                          for appid in ('4820790', '5070740', '5158570'):
+                              assert page.locator(f'main a[href*="/app/{appid}/"]').count() == 1, (prefix, appid)
+                      total += 1
+                      print('PASS', prefix)
+              page.set_viewport_size({'width':390,'height':844})
+              for name in ('index.html','studio.html','dispatch.html'):
+                  page.goto(base+name, wait_until='networkidle')
+                  button=page.locator('[data-menu]')
+                  nav=page.locator('[data-nav]')
+                  assert button.get_attribute('aria-expanded')=='false' and not nav.is_visible(), name
+                  button.click()
+                  assert button.get_attribute('aria-expanded')=='true' and nav.is_visible(), name
+                  nav.locator('a').first.focus()
+                  page.keyboard.press('Escape')
+                  assert button.get_attribute('aria-expanded')=='false' and button.evaluate('(e)=>e===document.activeElement'), name
+              browser.close()
+          server.shutdown()
+          print(f'PASS: {total} page/viewport combinations and mobile navigation on all three changed pages.')
+          PY
