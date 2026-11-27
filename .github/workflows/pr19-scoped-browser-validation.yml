@@ -56,7 +56,7 @@ jobs:
                       assert page.locator('footer a[href="privacy.html"]').count() == 1, prefix
                       if name == 'index.html':
                           for appid in ('4820790', '5070740', '5158570'):
-                              assert page.locator(f'main a[href*="/app/{appid}/"]').count() == 1, (prefix, appid)
+                              assert page.locator(f'main a[href^="https://store.steampowered.com/app/{appid}/"]').count() == 1, (prefix, appid)
                       total += 1
                       print('PASS', prefix)
               page.set_viewport_size({'width':390,'height':844})
